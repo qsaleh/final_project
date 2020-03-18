@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Component } from 'react';
 import { Text, TextInput, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import axios from 'axios';
 import { navigation } from "@react-navigation/stack";
 
 export default function App({ navigation: { navigate } }) {
@@ -16,10 +17,10 @@ export default function App({ navigation: { navigate } }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    axios.get(`http://bugi-api.herokuapp.com/api/product-details`)
+    axios.get(`https://bugi-api.herokuapp.com/api/product-details`)
     .then((response) => {
     console.log("here")
-      console.log(response)
+      console.log(data)
     })
     .catch((error) => {
       console.log(error)

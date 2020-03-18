@@ -16,7 +16,6 @@ export default class Tables extends Component {
       ]
     }
   }
-
   render() {
     const state = this.state;
     return (

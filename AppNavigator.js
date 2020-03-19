@@ -3,6 +3,7 @@ import Login from './components/login'
 import ProductDetails from './components/products-details';
 import QRScanner from './components/qr-scanner';
 import Cart from './components/cart';
+import Receipt from './components/receipt'
 import { createStackNavigator } from '@react-navigation/stack';
 
 export default function AppNavigator() {

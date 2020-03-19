@@ -1,7 +1,8 @@
-import React, { useState, useEffect, Component } from "react";
-import { Text, TextInput, View, StyleSheet, Button } from "react-native";
-import { BarCodeScanner } from "expo-barcode-scanner";
-import axios from "axios";
+import React, { useState, useEffect, Component } from 'react';
+import { Text, TextInput, View, StyleSheet, Button } from 'react-native';
+import { BarCodeScanner } from 'expo-barcode-scanner';
+import ButtonWithBackground from "../components/ButtonWithBackground";
+import axios from 'axios';
 import { navigation } from "@react-navigation/stack";
 
 export default function App({ navigation: { navigate } }) {
@@ -56,6 +57,7 @@ export default function App({ navigation: { navigate } }) {
         }}
       />
       <TextInput
+<<<<<<< HEAD
         style={{
           alignSelf: "center"
         }}
@@ -70,6 +72,20 @@ export default function App({ navigation: { navigate } }) {
         }}
         title="submit"
         onPress={() => navigate("ProductsDetails")}
+=======
+          style={{
+            alignSelf: 'center'}}
+          placeholder="Enter barcode"
+        />
+
+      <ButtonWithBackground
+        text="submit"
+        color="#2C7873"
+        onPress={() => navigate("ProductsDetails")}
+        style={{
+          alignSelf: 'center'
+        }}
+>>>>>>> b7016f9927a1de90d890922bc1009ca06f4dd489
       />
 
       {scanned && (

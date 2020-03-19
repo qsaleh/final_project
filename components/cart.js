@@ -10,7 +10,7 @@ const Cart = ({ navigation: { navigate } }) => {
       <ButtonWithBackground
         text="Pay Now"
         color="#2C7873"
-        onPress={() => navigate("QRScanner")}
+        onPress={() => navigate("Cart")}
       />
     </View>]
   );

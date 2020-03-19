@@ -6,14 +6,8 @@ const ProductsDetails = ({ navigation: { navigate } }) => {
   return (
     <View style={styles.container}>
       <Text>Product Details</Text>
-      <Button
-      title="Continue shopping"
-      onPress={
-          () => navigate('QRScanner')}/>
-      <Button
-      title="Cart"
-      onPress={
-          () => navigate('Cart')}/>
+      <Button title="Continue shopping" onPress={() => navigate("QRScanner")} />
+      <Button title="Cart" onPress={() => navigate("Cart")} />
     </View>
   );
 };

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, Component } from 'react';
-import { Text, TextInput, View, StyleSheet, Button } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import axios from 'axios';
+import React, { useState, useEffect, Component } from "react";
+import { Text, TextInput, View, StyleSheet, Button } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
+import axios from "axios";
 import { navigation } from "@react-navigation/stack";
 
 export default function App({ navigation: { navigate } }) {
@@ -11,22 +11,23 @@ export default function App({ navigation: { navigate } }) {
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    axios.get(`https://bugi-api.herokuapp.com/api/product-details`)
-    .then((response) => {
-    console.log("here")
-      console.log(data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+    axios
+      .get(`https://bugi-api.herokuapp.com/api/product-details`)
+      .then((response) => {
+        console.log("here");
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     navigate("ProductsDetails");
-    
+
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
@@ -40,35 +41,40 @@ export default function App({ navigation: { navigate } }) {
   return (
     <View
       style={{
-        display: 'flex',
+        display: "flex",
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start'
-      }}>
+        flexDirection: "column",
+        justifyContent: "flex-start"
+      }}
+    >
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         // style={StyleSheet.absoluteFillObject}
         style={{
-          height: '60%',
-          width: '100%'
+          height: "60%",
+          width: "100%"
         }}
       />
       <TextInput
-          style={{
-            alignSelf: 'center'}}
-          placeholder="Enter barcode"
-        />
-              <Button
-          style={{
-            padding: 16,
-            width: 200,
-            borderRadius: 24,
-            alignItems: 'center'
-          }}
-      title="submit"
-      onPress={() => navigate("ProductsDetails")}/>
+        style={{
+          alignSelf: "center"
+        }}
+        placeholder="Enter barcode"
+      />
+      <Button
+        style={{
+          padding: 16,
+          width: 200,
+          borderRadius: 24,
+          alignItems: "center"
+        }}
+        title="submit"
+        onPress={() => navigate("ProductsDetails")}
+      />
 
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+      {scanned && (
+        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+      )}
     </View>
   );
 }

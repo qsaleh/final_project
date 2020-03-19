@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, YellowBox } from "react-native";
+import ButtonWithBackground from "../components/ButtonWithBackground";
+
 import {
   Table,
   TableWrapper,
@@ -18,12 +20,13 @@ const styles = StyleSheet.create({
   text: { margin: 6 }
 });
 
-class Tables extends Component {
+class Receipt extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedProducts: [],
-      tableHead: ["Items", "UPC", "Recyclable"]
+      tableHead: ["Total Price",  "$Total","500$"]
+
     };
   }
 
@@ -32,8 +35,6 @@ class Tables extends Component {
       .get(`https://bugi-api.herokuapp.com/api/orders`)
 
       .then((data) => {
-        console.log("dataaaaaa", data);
-
         const selectedProducts = data.data.map((item) => Object.values(item));
 
         console.log(selectedProducts);
@@ -60,6 +61,7 @@ class Tables extends Component {
             style={styles.head}
             textStyle={styles.text}
           />
+
           {product.map((item, i) => {
             return <Row data={item} key={i} textStyle={styles.text} />;
           })}
@@ -68,4 +70,12 @@ class Tables extends Component {
     );
   }
 }
-export default Tables;
+
+export default Receipt;
+
+//axios.get("api/orders")
+//without htableHead
+//Confirmation note
+//add style to make it diiferent from Cart
+// Button to continue scanning
+//Button for logout

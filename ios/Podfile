@@ -38,7 +38,7 @@ target 'bugi' do
   pod "RNPermissions", :path => '../node_modules/react-native-permissions'
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod "Permission-Camera", :path => "#{permissions_path}/Camera.podspec"
-
+  pod 'Stripe'
   # Other native modules
 
   # Automatically detect installed unimodules
@@ -46,4 +46,6 @@ target 'bugi' do
 
   # react-native-cli autolinking
   use_native_modules!
+  pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
+
 end

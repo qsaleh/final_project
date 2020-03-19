@@ -2,10 +2,21 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { navigation } from "@react-navigation/stack";
+import axios from 'axios';
+
 const ProductsDetails = ({ navigation: { navigate } }) => {
+  const showProducts = function() {
+    axios.get(`http://bugi-api.herokuapp.com/api/product-details`)
+    .then((response) => {
+      return response.data
+    })
+    .catch((error) => {
+      return error
+    })
+  }
   return (
     <View style={styles.container}>
-      <Text>Product Details</Text>
+      <Text>showProducts</Text>
       <Button
       title="Continue shopping"
       onPress={
@@ -13,7 +24,7 @@ const ProductsDetails = ({ navigation: { navigate } }) => {
       <Button
       title="Cart"
       onPress={
-          () => navigate('QRScanner')}/>
+          () => navigate('Cart')}/>
     </View>
   );
 };

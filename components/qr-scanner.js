@@ -57,22 +57,6 @@ export default function App({ navigation: { navigate } }) {
         }}
       />
       <TextInput
-<<<<<<< HEAD
-        style={{
-          alignSelf: "center"
-        }}
-        placeholder="Enter barcode"
-      />
-      <Button
-        style={{
-          padding: 16,
-          width: 200,
-          borderRadius: 24,
-          alignItems: "center"
-        }}
-        title="submit"
-        onPress={() => navigate("ProductsDetails")}
-=======
           style={{
             alignSelf: 'center'}}
           placeholder="Enter barcode"
@@ -85,7 +69,6 @@ export default function App({ navigation: { navigate } }) {
         style={{
           alignSelf: 'center'
         }}
->>>>>>> b7016f9927a1de90d890922bc1009ca06f4dd489
       />
 
       {scanned && (

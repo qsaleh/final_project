@@ -1,6 +1,8 @@
 import React, { useState, useEffect, Component } from 'react';
 import { Text, TextInput, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import ButtonWithBackground from "../components/ButtonWithBackground";
+import axios from 'axios';
 import { navigation } from "@react-navigation/stack";
 import axios from 'axios';
 
@@ -11,7 +13,7 @@ export default function App({ navigation: { navigate } }) {
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
 
@@ -25,7 +27,7 @@ export default function App({ navigation: { navigate } }) {
       console.log(error)
     })
     navigate("ProductsDetails");
-    
+
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
@@ -39,17 +41,18 @@ export default function App({ navigation: { navigate } }) {
   return (
     <View
       style={{
-        display: 'flex',
+        display: "flex",
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start'
-      }}>
+        flexDirection: "column",
+        justifyContent: "flex-start"
+      }}
+    >
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         // style={StyleSheet.absoluteFillObject}
         style={{
-          height: '60%',
-          width: '100%'
+          height: "60%",
+          width: "100%"
         }}
       />
       <TextInput
@@ -57,17 +60,19 @@ export default function App({ navigation: { navigate } }) {
             alignSelf: 'center'}}
           placeholder="Enter barcode"
         />
-              <Button
-          style={{
-            padding: 16,
-            width: 200,
-            borderRadius: 24,
-            alignItems: 'center'
-          }}
-      title="submit"
-      onPress={() => navigate("ProductsDetails")}/>
 
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+      <ButtonWithBackground
+        text="submit"
+        color="#2C7873"
+        onPress={() => navigate("ProductsDetails")}
+        style={{
+          alignSelf: 'center'
+        }}
+      />
+
+      {scanned && (
+        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+      )}
     </View>
   );
 }

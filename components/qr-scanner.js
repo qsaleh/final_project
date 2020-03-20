@@ -19,14 +19,16 @@ export default function App({ navigation: { navigate } }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    axios.get(`http://bugi-api.herokuapp.com/api/product-details`)
-    .then((response) => {
-      console.log(response.data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-    navigate("ProductsDetails");
+    // axios
+    //   .post(`https://bugi-api.herokuapp.com/api/product-details/:${data}`)
+    //   .then((response) => {
+    //     console.log("here");
+    //     console.log(data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    navigate("ProductsDetails", {data});
 
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };

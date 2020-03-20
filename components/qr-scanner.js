@@ -27,7 +27,6 @@ export default function App({ navigation: { navigate } }) {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-    console.log('data', data);
     navigate("ProductsDetails", {data});
 
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);

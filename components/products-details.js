@@ -1,36 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { navigation } from "@react-navigation/stack";
 import axios from "axios";
 
-export const ProductsDetails = ({route, navigation: { navigate } }) => {
-const [product, setProduct] = useState(null);
-     axios
-      .get(`https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`)
+const ProductsDetails = ({ route, navigation: { navigate } }) => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`https://bugi-api.herokuapp.com/api/product-details/667888093731`)
       .then((response) => {
-        console.log('response.data', response.data);
-        setProduct(response.data);
-        dispatch('UPDATE_CART', response.data) // 
+        setProducts(response.data);
+        // dispatch("UPDATE_CART", response.data);
 
         /**
          * switch(action.type) {
          *  case 'UPDATE_CART':
          *    return {
          *      ...state,
-         *       cart: [...state.cart, action.payload]
+         *       cart: [...state.cart, action.payload];
+         *
+         *      default:
+         * throw new Error();
          *     }
          * }
          */
+        //render(component)
+        //pass state to Cart
+        //pass (params) to be onPress
       })
       .catch((error) => {
         console.log(error);
       });
+  }, []);
   return (
     <View style={styles.container}>
       <Text>Product Details</Text>
       <Button title="Continue shopping" onPress={() => navigate("QRScanner")} />
-      <Button title="Cart" onPress={() => navigate("Cart", {product})} />
+      {/* pass (params) onPress */}
+      <Button title="Cart" onPress={() => navigate("Cart", { products })} />
     </View>
   );
 };
@@ -44,4 +53,4 @@ const styles = StyleSheet.create({
   }
 });
 
-// export default ProductsDetails;
+export default ProductsDetails;

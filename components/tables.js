@@ -28,26 +28,28 @@ class Tables extends Component {
   }
   IncrementItem = (index) => {
     this.setState(state => {
-      const addItem = state.selectedProducts.map(item => {
-        if (index === 1) {
-          return item + 1;
+      const addItem = state.selectedProducts.map((item, i) => {
+        if (i === index) {
+          item = item + 1;
         }
-        return item;
+        item = item;
       });
       return {
+        ...this.state,
         selectedProducts: [...addItem]
-      };
+      }
     });
   };
   DecreaseItem = (index) => {
     this.setState(state => {
       const removeItem = state.selectedProducts.map(item => {
         if (index === 1) {
-          return item - 1
+          item = item - 1
         }
-        return item;
+        item = item;
       });
       return {
+        ...this.state,
         selectedProducts: [...removeItem]
       };
     });
@@ -57,6 +59,7 @@ class Tables extends Component {
       .get(`https://bugi-api.herokuapp.com/api/orders`)
 
       .then((data) => {
+        console.log(data)
         const products = data.data.map((item) => Object.values(item));
         this.setState((state) => ({ selectedProducts: [...state.selectedProducts, ...products] }));
 

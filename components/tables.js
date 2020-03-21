@@ -33,7 +33,27 @@ class Tables extends Component {
       ]
     };
   }
-  //setState instead
+
+  componentDidMount() {
+    axios
+      .get(`https://bugi-api.herokuapp.com/api/orders`)
+
+      .then((data) => {
+        console.log("dataaaaaa", data);
+
+        const selectedProducts = data.data.map((item) => Object.values(item));
+
+        console.log(selectedProducts);
+        this.setState({ selectedProducts: selectedProducts });
+        this.setState((prevState) => ({
+          ...prevState,
+          selectedProducts: [...prevState.selectedProducts, ...selectedProducts]
+        }));
+      })
+      .catch((err) => {
+        console.log(" catch here ", err);
+      });
+  }
   render() {
     const products = this.props.selectedProducts;
 

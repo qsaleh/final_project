@@ -25,6 +25,7 @@ class Tables extends Component {
       selectedProducts: [],
       tableHead: ["Items", "UPC", "Recyclable"]
     };
+    console.log("props", props)
   }
   IncrementItem = (index) => {
     this.setState(state => {

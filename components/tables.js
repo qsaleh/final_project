@@ -47,7 +47,6 @@ class Tables extends Component {
         console.log(" catch here ", err);
       });
   }
-
   render() {
     const product = this.state.selectedProducts;
     console.log("product", product);

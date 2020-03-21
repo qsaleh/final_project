@@ -2,11 +2,10 @@ import React, { useState, useEffect, Component } from 'react';
 import { Text, TextInput, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import ButtonWithBackground from "../components/ButtonWithBackground";
-import axios from 'axios';
 import { navigation } from "@react-navigation/stack";
 import axios from 'axios';
 
-export default function App({ navigation: { navigate } }) {
+export default function QRScanner({ navigation: { navigate } }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 

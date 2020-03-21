@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { navigation } from "@react-navigation/stack";
+import { route, navigation } from "@react-navigation/stack";
 import axios from "axios";
 
 export const ProductsDetails = ({route, navigation: { navigate } }) => {
@@ -9,9 +9,9 @@ const [product, setProduct] = useState(null);
      axios
       .get(`https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`)
       .then((response) => {
-        console.log('response.data', response.data);
+        // console.log('response.data', response.data);
         setProduct(response.data);
-        dispatch('UPDATE_CART', response.data) // 
+        // dispatch('UPDATE_CART', response.data)
 
         /**
          * switch(action.type) {
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   }
 });
 
-// export default ProductsDetails;
+export default ProductsDetails;

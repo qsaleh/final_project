@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, YellowBox } from "react-native";
+import { StyleSheet, View, YellowBox, Button } from "react-native";
 import {
   Table,
   TableWrapper,
@@ -26,31 +26,46 @@ class Tables extends Component {
       tableHead: ["Items", "UPC", "Recyclable"]
     };
   }
-
+  IncrementItem = (index) => {
+    this.setState(state => {
+      const addItem = state.selectedProducts.map(item => {
+        if (index === 1) {
+          return item + 1;
+        }
+        return item;
+      });
+      return {
+        selectedProducts: [...addItem]
+      };
+    });
+  };
+  DecreaseItem = (index) => {
+    this.setState(state => {
+      const removeItem = state.selectedProducts.map(item => {
+        if (index === 1) {
+          return item - 1
+        }
+        return item;
+      });
+      return {
+        selectedProducts: [...removeItem]
+      };
+    });
+  };
   componentDidMount() {
     axios
       .get(`https://bugi-api.herokuapp.com/api/orders`)
 
       .then((data) => {
-        console.log("dataaaaaa", data);
+        const products = data.data.map((item) => Object.values(item));
+        this.setState((state) => ({ selectedProducts: [...state.selectedProducts, ...products] }));
 
-        const selectedProducts = data.data.map((item) => Object.values(item));
-
-        console.log(selectedProducts);
-        this.setState({ selectedProducts: selectedProducts });
-        this.setState((prevState) => ({
-          ...prevState,
-          selectedProducts: [...prevState.selectedProducts, ...selectedProducts]
-        }));
       })
       .catch((err) => {
         console.log(" catch here ", err);
       });
   }
   render() {
-    const product = this.state.selectedProducts;
-    console.log("product", product);
-
     return (
       <View style={styles.container}>
         <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
@@ -59,8 +74,14 @@ class Tables extends Component {
             style={styles.head}
             textStyle={styles.text}
           />
-          {product.map((item, i) => {
-            return <Row data={item} key={i} textStyle={styles.text} />;
+          {this.state.selectedProducts.map((item, i) => {
+            return (
+              <View>
+                <Button title="+" onPress={() => this.IncrementItem(i)} />
+                <Button title="-" onPress={() => this.DecreaseItem(i)} />
+                <Row data={item} key={i} textStyle={styles.text} />
+              </View>
+            );
           })}
         </Table>
       </View>

@@ -22,7 +22,7 @@ class Tables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedProducts: [],
+      selectedProducts: [1, 3, 4],
       tableHead: ["Items", "UPC", "Recyclable"]
     };
     console.log("props", props)
@@ -31,27 +31,28 @@ class Tables extends Component {
     this.setState(state => {
       const addItem = state.selectedProducts.map((item, i) => {
         if (i === index) {
-          item = item + 1;
+          return item + 1;
         }
-        item = item;
+        return item;
       });
       return {
         ...this.state,
-        selectedProducts: [...addItem]
+        selectedProducts: addItem
       }
     });
+
   };
   DecreaseItem = (index) => {
     this.setState(state => {
       const removeItem = state.selectedProducts.map(item => {
         if (index === 1) {
-          item = item - 1
+          return item - 1
         }
-        item = item;
+        return item;
       });
       return {
         ...this.state,
-        selectedProducts: [...removeItem]
+        selectedProducts: removeItem
       };
     });
   };

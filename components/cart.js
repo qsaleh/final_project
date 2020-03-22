@@ -4,10 +4,12 @@ import ButtonWithBackground from "../components/ButtonWithBackground";
 import Tables from "../components/tables";
 import Receipt from "../components/receipt";
 import axios from "axios";
-import { navigation } from "@react-navigation/stack";
-const Cart = ({ navigation: { navigate } }) => {
+import { route, navigation } from "@react-navigation/stack";
+const Cart = ({ navigation: { navigate }, route }) => {
+  const { products } = route.params;
+  console.log(products, " product");
   return [
-    <Tables />,
+    <Tables selectedProducts={products} />,
     <View style={styles.container}>
       <Button title="Continue Scanning" onPress={() => navigate("QRScanner")} />
       <ButtonWithBackground

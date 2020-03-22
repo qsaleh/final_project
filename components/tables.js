@@ -22,8 +22,15 @@ class Tables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedProducts: [1, 3, 4],
-      tableHead: ["Items", "UPC", "Recyclable"]
+      // selectedProducts: [],
+      tableHead: [
+        "Items",
+        "Picture",
+        "UPC",
+        "Price",
+        "Recyclable",
+        "Compostable"
+      ]
     };
     console.log("props", props)
   }
@@ -71,6 +78,18 @@ class Tables extends Component {
       });
   }
   render() {
+    const products = this.props.selectedProducts;
+
+    const nestedData = products.map((product) => [
+      product.name,
+      product.picture,
+      product.upc,
+      product.price,
+      String(product.recyclable),
+      String(product.compostable)
+    ]);
+    console.log(nestedData, "this is Life");
+
     return (
       <View style={styles.container}>
         <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
@@ -79,15 +98,8 @@ class Tables extends Component {
             style={styles.head}
             textStyle={styles.text}
           />
-          {this.state.selectedProducts.map((item, i) => {
-            return (
-              <View>
-                <Button title="+" onPress={() => this.IncrementItem(i)} />
-                <Button title="-" onPress={() => this.DecreaseItem(i)} />
-                <Row data={item} key={i} textStyle={styles.text} />
-              </View>
-            );
-          })}
+
+          <Rows data={nestedData} textStyle={styles.text} />
         </Table>
       </View>
     );

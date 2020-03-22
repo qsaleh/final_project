@@ -22,54 +22,20 @@ class Tables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // selectedProducts: [],
+      selectedProducts: [],
       tableHead: [
-        "Items",
-        "Picture",
-        "UPC",
-        "Price",
-        "Recyclable",
-        "Compostable"
+        "quantity",
+        "product_id",
+        "order_id"
       ]
     };
-    console.log("props", props)
   }
-  IncrementItem = (index) => {
-    this.setState(state => {
-      const addItem = state.selectedProducts.map((item, i) => {
-        if (i === index) {
-          return item + 1;
-        }
-        return item;
-      });
-      return {
-        ...this.state,
-        selectedProducts: addItem
-      }
-    });
-
-  };
-  DecreaseItem = (index) => {
-    this.setState(state => {
-      const removeItem = state.selectedProducts.map(item => {
-        if (index === 1) {
-          return item - 1
-        }
-        return item;
-      });
-      return {
-        ...this.state,
-        selectedProducts: removeItem
-      };
-    });
-  };
   componentDidMount() {
     axios
       .get(`https://bugi-api.herokuapp.com/api/orders`)
 
       .then((data) => {
-        console.log(data)
-        const products = data.data.map((item) => Object.values(item));
+        const products = data.data;
         this.setState((state) => ({ selectedProducts: [...state.selectedProducts, ...products] }));
 
       })
@@ -77,18 +43,43 @@ class Tables extends Component {
         console.log(" catch here ", err);
       });
   }
+  IncrementItem = () => {
+    this.setState(state => {
+      const addItem = state.selectedProducts.map((product) => ({
+        quantity: product.quantity + 1,
+        product_id: product.product_id,
+        order_id: product.order_id
+      }));
+      return {
+        ...this.state,
+        selectedProducts: addItem
+      }
+    });
+
+  };
+  DecreaseItem = () => {
+    this.setState(state => {
+      const removeItem = state.selectedProducts.map((product) => ({
+        quantity: product.quantity - 1,
+        product_id: product.product_id,
+        order_id: product.order_id
+      }));
+      return {
+        ...this.state,
+        selectedProducts: removeItem
+      };
+    });
+  };
+
   render() {
-    const products = this.props.selectedProducts;
+    const products = this.state.selectedProducts;
 
     const nestedData = products.map((product) => [
-      product.name,
-      product.picture,
-      product.upc,
-      product.price,
-      String(product.recyclable),
-      String(product.compostable)
+      product.quantity,
+      product.product_id,
+      product.order_id,
+
     ]);
-    console.log(nestedData, "this is Life");
 
     return (
       <View style={styles.container}>
@@ -98,8 +89,9 @@ class Tables extends Component {
             style={styles.head}
             textStyle={styles.text}
           />
-
           <Rows data={nestedData} textStyle={styles.text} />
+          <Button title="+" onPress={this.IncrementItem} />
+          <Button title="-" onPress={this.DecreaseItem} />
         </Table>
       </View>
     );

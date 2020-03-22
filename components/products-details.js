@@ -12,7 +12,7 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
       .get(`https://bugi-api.herokuapp.com/api/product-details/667888093731`)
       .then((response) => {
         // console.log('response.data', response.data);
-        setProduct(response.data);
+        setProducts(response.data);
         // dispatch('UPDATE_CART', response.data)
 
         /**
@@ -53,5 +53,4 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
-
 export default ProductsDetails;

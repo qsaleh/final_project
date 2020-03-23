@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
+  container: { flex: 1, padding: 16, paddingTop: 250, backgroundColor: "#fff" },
   head: { height: 40, backgroundColor: "#f1f8ff" },
   text: { margin: 6 }
 });
@@ -22,35 +22,30 @@ class Tables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedProducts: [],
-      tableHead: ["Items", "UPC", "Recyclable"]
+      // selectedProducts: [],
+      tableHead: [
+        "Items",
+        "Picture",
+        "UPC",
+        "Price",
+        "Recyclable",
+        "Compostable"
+      ]
     };
   }
-
-  componentDidMount() {
-    axios
-      .get(`https://bugi-api.herokuapp.com/api/orders`)
-
-      .then((data) => {
-        console.log("dataaaaaa", data);
-
-        const selectedProducts = data.data.map((item) => Object.values(item));
-
-        console.log(selectedProducts);
-        this.setState({ selectedProducts: selectedProducts });
-        this.setState((prevState) => ({
-          ...prevState,
-          selectedProducts: [...prevState.selectedProducts, ...selectedProducts]
-        }));
-      })
-      .catch((err) => {
-        console.log(" catch here ", err);
-      });
-  }
-
+  //setState instead
   render() {
-    const product = this.state.selectedProducts;
-    console.log("product", product);
+    const products = this.props.selectedProducts;
+
+    const nestedData = products.map((product) => [
+      product.name,
+      product.picture,
+      product.upc,
+      product.price,
+      String(product.recyclable),
+      String(product.compostable)
+    ]);
+    console.log(nestedData, "this is Life");
 
     return (
       <View style={styles.container}>
@@ -60,9 +55,8 @@ class Tables extends Component {
             style={styles.head}
             textStyle={styles.text}
           />
-          {product.map((item, i) => {
-            return <Row data={item} key={i} textStyle={styles.text} />;
-          })}
+
+          <Rows data={nestedData} textStyle={styles.text} />
         </Table>
       </View>
     );

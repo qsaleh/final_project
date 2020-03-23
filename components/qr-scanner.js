@@ -17,6 +17,7 @@ export default function App({ navigation: { navigate } }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
+    console.log(type, data, "test herehhhhhhh")
     setScanned(true);
     // axios
     //   .post(`https://bugi-api.herokuapp.com/api/product-details/:${data}`)

@@ -4,9 +4,11 @@ import ButtonWithBackground from "../components/ButtonWithBackground";
 import Tables from "../components/tables";
 import Receipt from "../components/receipt";
 import axios from "axios";
-const Cart = ({ navigation: { navigate } }) => {
+const Cart = ({ navigation: { navigate }, route }) => {
+  const { products } = route.params;
+  console.log(products, " product");
   return [
-    <Tables />,
+    <Tables selectedProducts={products} />,
     <View style={styles.container}>
       <Button title="Continue Scanning" onPress={() => navigate("QRScanner")} />
       <ButtonWithBackground
@@ -15,14 +17,16 @@ const Cart = ({ navigation: { navigate } }) => {
         // onPress={() => navigate("Receipt")}
         onPress={() => {
           axios
-          .post(`https://bugi-api.herokuapp.com/api/orders/`, )
-          .then((response) => {
-            navigate("Receipt");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-              }}
+            .post(`https://bugi-api.herokuapp.com/api/orders/`)
+            .then((response) => {
+              navigate("Receipt");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }}
+        //post to api endpoit in product page
+        //get in cart page
       />
     </View>
   ];

@@ -39,11 +39,11 @@ class Tables extends Component {
       .get(`https://bugi-api.herokuapp.com/api/orders`)
 
       .then((data) => {
-        console.log("dataaaaaa", data);
+        // console.log("dataaaaaa", data);
 
         const selectedProducts = data.data.map((item) => Object.values(item));
 
-        console.log(selectedProducts);
+        console.log("selectedProducts in tables.js", selectedProducts);
         this.setState({ selectedProducts: selectedProducts });
         this.setState((prevState) => ({
           ...prevState,
@@ -65,7 +65,7 @@ class Tables extends Component {
       String(product.recyclable),
       String(product.compostable)
     ]);
-    console.log(nestedData, "this is Life");
+    console.log("nestedData in tables.js", nestedData);
 
     return (
       <View style={styles.container}>

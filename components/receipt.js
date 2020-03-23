@@ -37,7 +37,7 @@ class Receipt extends Component {
       .then((data) => {
         const selectedProducts = data.data.map((item) => Object.values(item));
 
-        console.log(selectedProducts);
+        console.log("selectedProducts in receipt", selectedProducts);
         this.setState({ selectedProducts: selectedProducts });
         this.setState((prevState) => ({
           ...prevState,

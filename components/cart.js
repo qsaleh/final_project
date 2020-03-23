@@ -6,7 +6,7 @@ import Receipt from "../components/receipt";
 import axios from "axios";
 const Cart = ({ navigation: { navigate }, route }) => {
   const { products } = route.params;
-  console.log(products, " product");
+  console.log( " product", products);
   return [
     <Tables selectedProducts={products} />,
     <View style={styles.container}>

@@ -7,10 +7,15 @@ import axios from "axios";
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
   const [products, setProducts] = useState([]);
 
+  console.log('route.params.data', route.params.data);
+  const stringToSearch =  `%${route.params.data.slice(3, 9)}%`;
+  console.log('stringToSearch', stringToSearch);
+
   useEffect(() => {
     axios
-      .get(`https://bugi-api.herokuapp.com/api/product-details/667888093731`)
+      .get(`https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`)
       .then((response) => {
+        // console.log('response.data', response.data);
         setProducts(response.data);
         // dispatch("UPDATE_CART", response.data);
 

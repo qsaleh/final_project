@@ -26,7 +26,6 @@ class Receipt extends Component {
     this.state = {
       selectedProducts: [],
       tableHead: ["Total Price", "$Total", "500$"]
-
     };
   }
 

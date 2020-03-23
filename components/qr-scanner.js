@@ -1,9 +1,9 @@
-import React, { useState, useEffect, Component } from 'react';
-import { Text, TextInput, View, StyleSheet, Button } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import React, { useState, useEffect, Component } from "react";
+import { Text, TextInput, View, StyleSheet, Button } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import { navigation } from "@react-navigation/stack";
-import axios from 'axios';
+import axios from "axios";
 
 export default function QRScanner({ navigation: { navigate } }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -17,7 +17,7 @@ export default function QRScanner({ navigation: { navigate } }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    console.log(type, data, "test herehhhhhhh")
+    console.log(type, data, "test herehhhhhhh");
     setScanned(true);
     // axios
     //   .post(`https://bugi-api.herokuapp.com/api/product-details/:${data}`)
@@ -28,7 +28,7 @@ export default function QRScanner({ navigation: { navigate } }) {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-    navigate("ProductsDetails", {data});
+    navigate("ProductsDetails", { data });
 
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
@@ -58,17 +58,18 @@ export default function QRScanner({ navigation: { navigate } }) {
         }}
       />
       <TextInput
-          style={{
-            alignSelf: 'center'}}
-          placeholder="Enter barcode"
-        />
+        style={{
+          alignSelf: "center"
+        }}
+        placeholder="Enter barcode"
+      />
 
       <ButtonWithBackground
         text="submit"
         color="#2C7873"
         onPress={() => navigate("ProductsDetails")}
         style={{
-          alignSelf: 'center'
+          alignSelf: "center"
         }}
       />
 

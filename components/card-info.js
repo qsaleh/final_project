@@ -2,34 +2,15 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TextInput } from 'react-native-paper';
 import ButtonWithBackground from "./ButtonWithBackground";
-import Stripe from 'react-native-stripe-api';
-
 class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
       number: "",
-      expMonth: "",
-      expYear: "",
+      exp_month: "",
+      exp_year: "",
       cvc: ""
     };
-
-  }
-  confirmPayment() {
-    const apiKey = 'pk_test_Jxd3WCtPiiGGGQORl0AxKkN500Ta61gIx2';
-    const client = new Stripe(apiKey);
-    client.createToken(
-      '4242424242424242',
-      '09',
-      '18',
-      '111'
-    )
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log(error.message)
-      });
   }
   render() {
     return (
@@ -37,37 +18,31 @@ class Card extends Component {
         <TextInput
           label='credit card number'
           placeholder={""}
-          value={'4242424242424242'}
           onChangeText={(number) => this.setState({ number })}
+          value={'4242424242424242'}
         />
         <TextInput
           label='exp month'
           placeholder={""}
+          onChangeText={(exp_month) => this.setState({ exp_month })}
           value={'09'}
-          onChangeText={(expMonth) => this.setState({ expMonth })}
         />
         <TextInput
           label='exp year'
           placeholder={""}
-          value={'18'}
-          onChangeText={(expYear) => this.setState({ expYear })}
+          onChangeText={(exp_year) => this.setState({ exp_year })}
+          value={'22'}
         />
         <TextInput
           label='cvc'
           placeholder={""}
-          value={'111'}
           onChangeText={(cvc) => this.setState({ cvc })}
-        />
-        <ButtonWithBackground
-          text="confirm payment"
-          color="#2C7873"
-          onPress={this.confirmPayment.bind(this)}
+          value={'111'}
         />
       </View>
     );
   }
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -76,5 +51,4 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
-
 export default Card;

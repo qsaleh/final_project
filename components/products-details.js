@@ -13,9 +13,9 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
 
   // const upcnumber = {(route.params.data)}
   useEffect(() => {
-    console.log(route.params.data, "gdfhghjjlhkgjfhgjkl;kjhghj");
+    console.log(route.params, "gdfhghjjlhkgjfhgjkl;kjhghj");
     axios
-      .get(`https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`)
+      .get(`https://bugi-api.herokuapp.com/api/product-details/${route.params}`)
 
       .then((response) => {
         setProducts(response.data);

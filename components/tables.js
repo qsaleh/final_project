@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, YellowBox } from "react-native";
+import { StyleSheet, View, YellowBox, Button } from "react-native";
 import {
   Table,
   TableWrapper,
@@ -32,8 +32,51 @@ class Tables extends Component {
         "Compostable"
       ]
     };
+    console.log("props", props)
   }
-  //setState instead
+  IncrementItem = (index) => {
+    this.setState(state => {
+      const addItem = state.selectedProducts.map((item, i) => {
+        if (i === index) {
+          return item + 1;
+        }
+        return item;
+      });
+      return {
+        ...this.state,
+        selectedProducts: addItem
+      }
+    });
+
+  };
+  DecreaseItem = (index) => {
+    this.setState(state => {
+      const removeItem = state.selectedProducts.map(item => {
+        if (index === 1) {
+          return item - 1
+        }
+        return item;
+      });
+      return {
+        ...this.state,
+        selectedProducts: removeItem
+      };
+    });
+  };
+  componentDidMount() {
+    axios
+      .get(`https://bugi-api.herokuapp.com/api/orders`)
+
+      .then((data) => {
+        console.log(data)
+        const products = data.data.map((item) => Object.values(item));
+        this.setState((state) => ({ selectedProducts: [...state.selectedProducts, ...products] }));
+
+      })
+      .catch((err) => {
+        console.log(" catch here ", err);
+      });
+  }
   render() {
     const products = this.props.selectedProducts;
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { navigation } from "@react-navigation/stack";
+import { route, navigation } from "@react-navigation/stack";
 import axios from "axios";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {

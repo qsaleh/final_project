@@ -4,6 +4,7 @@ import ButtonWithBackground from "../components/ButtonWithBackground";
 import Tables from "../components/tables";
 import Receipt from "../components/receipt";
 import axios from "axios";
+import { route, navigation } from "@react-navigation/stack";
 const Cart = ({ navigation: { navigate }, route }) => {
   const { products } = route.params;
   console.log(products, " product");
@@ -14,19 +15,7 @@ const Cart = ({ navigation: { navigate }, route }) => {
       <ButtonWithBackground
         text="Pay Now"
         color="#2C7873"
-        // onPress={() => navigate("Receipt")}
-        onPress={() => {
-          axios
-            .post(`https://bugi-api.herokuapp.com/api/orders/`)
-            .then((response) => {
-              navigate("Receipt");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }}
-        //post to api endpoit in product page
-        //get in cart page
+        onPress={() => navigate("Payment")}
       />
     </View>
   ];

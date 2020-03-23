@@ -5,31 +5,14 @@ import { route, navigation } from "@react-navigation/stack";
 import axios from "axios";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     axios
       .get(`https://bugi-api.herokuapp.com/api/product-details/667888093731`)
       .then((response) => {
-        // console.log('response.data', response.data);
-        setProducts(response.data);
-        // dispatch('UPDATE_CART', response.data)
+        setProduct(response.data[0]);
 
-        /**
-         * switch(action.type) {
-         *  case 'UPDATE_CART':
-         *    return {
-         *      ...state,
-         *       cart: [...state.cart, action.payload];
-         *
-         *      default:
-         * throw new Error();
-         *     }
-         * }
-         */
-        //render(component)
-        //pass state to Cart
-        //pass (params) to be onPress
       })
       .catch((error) => {
         console.log(error);
@@ -38,9 +21,13 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
   return (
     <View style={styles.container}>
       <Text>Product Details</Text>
+      <Text>name: {product.name}</Text>
+      <Text>description: {product.description}</Text>
+      <Text>Picture: {product.picture}</Text>
+      <Text>price: {product.price}</Text>
       <Button title="Continue shopping" onPress={() => navigate("QRScanner")} />
       {/* pass (params) onPress */}
-      <Button title="Cart" onPress={() => navigate("Cart", { products })} />
+      <Button title="Cart" onPress={() => navigate("Cart", { product })} />
     </View>
   );
 };

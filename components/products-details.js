@@ -1,50 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { navigation } from "@react-navigation/stack";
+import { route, navigation } from "@react-navigation/stack";
 import axios from "axios";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
+  // route.params.data is  (EAN-13)
+  // heokuapp -api requires UPC-A
+  // google it
+  // boolean valid = EAN13CheckDigit.INSTANCE.isValid(code);
 
   console.log('route.params.data', route.params.data);
   const stringToSearch =  `%${route.params.data.slice(3, 9)}%`;
   console.log('stringToSearch', stringToSearch);
 
   useEffect(() => {
+    console.log(route.params.data, "gdfhghjjlhkgjfhgjkl;kjhghj");
     axios
       .get(`https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`)
       .then((response) => {
-        // console.log('response.data', response.data);
-        setProducts(response.data);
-        // dispatch("UPDATE_CART", response.data);
+        setProduct(response.data[0]);
 
-        /**
-         * switch(action.type) {
-         *  case 'UPDATE_CART':
-         *    return {
-         *      ...state,
-         *       cart: [...state.cart, action.payload];
-         *
-         *      default:
-         * throw new Error();
-         *     }
-         * }
-         */
-        //render(component)
-        //pass state to Cart
-        //pass (params) to be onPress
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+  //post
   return (
     <View style={styles.container}>
       <Text>Product Details</Text>
+      <Text>name: {product.name}</Text>
+      <Text>description: {product.description}</Text>
+      <Text>Picture: {product.picture}</Text>
+      <Text>price: {product.price}</Text>
       <Button title="Continue shopping" onPress={() => navigate("QRScanner")} />
       {/* pass (params) onPress */}
-      <Button title="Cart" onPress={() => navigate("Cart", { products })} />
+      <Button title="Cart" onPress={() => navigate("Cart", { product })} />
     </View>
   );
 };
@@ -57,5 +50,4 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
-
 export default ProductsDetails;

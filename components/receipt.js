@@ -25,7 +25,7 @@ class Receipt extends Component {
     super(props);
     this.state = {
       selectedProducts: [],
-      tableHead: ["Total Price",  "$Total","500$"]
+      tableHead: ["Total Price", "$Total", "500$"]
 
     };
   }

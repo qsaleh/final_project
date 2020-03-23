@@ -17,7 +17,7 @@ class Card extends Component {
   }
   render() {
     return (
-      <View >
+      <View style={styles.container}>
         <TextInput
           label='credit card number'
           placeholder={""}
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    margin: 20
   }
 });
 

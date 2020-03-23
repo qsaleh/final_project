@@ -6,6 +6,8 @@ import Cart from './components/cart';
 import Receipt from './components/receipt'
 import Payment from './components/payment'
 import { createStackNavigator } from '@react-navigation/stack';
+import { Button } from "react-native";
+import { navigation } from "@react-navigation/stack";
 export default function AppNavigator() {
   const Stack = createStackNavigator();
   const headerOptions = {

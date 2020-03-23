@@ -28,7 +28,7 @@ export default function QRScanner({ navigation: { navigate } }) {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-    navigate("ProductsDetails", {data});
+    navigate("ProductsDetails", { data });
 
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
@@ -45,8 +45,6 @@ export default function QRScanner({ navigation: { navigate } }) {
       style={{
         display: "flex",
         flex: 1,
-        flexDirection: "column",
-        justifyContent: "flex-start"
       }}
     >
       <BarCodeScanner
@@ -58,23 +56,24 @@ export default function QRScanner({ navigation: { navigate } }) {
         }}
       />
       <TextInput
-          style={{
-            alignSelf: 'center'}}
-          placeholder="Enter barcode"
-        />
-
+        style={{
+          alignSelf: 'center',
+          height: 60,
+        }}
+        placeholder="Enter barcode"
+      />
+      {scanned && (
+        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+      )}
       <ButtonWithBackground
         text="submit"
         color="#2C7873"
         onPress={() => navigate("ProductsDetails")}
         style={{
-          alignSelf: 'center'
+          alignSelf: 'center',
+          marginTop: 30
         }}
       />
-
-      {scanned && (
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-      )}
     </View>
   );
 }

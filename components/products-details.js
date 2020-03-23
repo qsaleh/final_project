@@ -5,7 +5,7 @@ import { route, navigation } from "@react-navigation/stack";
 import axios from "axios";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
   // route.params.data is  (EAN-13)
   // heokuapp -api requires UPC-A
   // google it

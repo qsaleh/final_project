@@ -9,6 +9,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 export default function AppNavigator() {
   const Stack = createStackNavigator();
+
+  const headerOptions = {
+    headerTintColor: 'white',
+    headerStyle: { backgroundColor: 'tomato' },
+  }
+
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} />

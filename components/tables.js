@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
+  container: { flex: 1, padding: 16, paddingTop: 250, backgroundColor: "#fff" },
   head: { height: 40, backgroundColor: "#f1f8ff" },
   text: { margin: 6 }
 });

@@ -5,9 +5,15 @@ import { route, navigation } from "@react-navigation/stack";
 import axios from "axios";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
+  // route.params.data is  (EAN-13)
+  // heokuapp -api requires UPC-A
+  // google it
+  // boolean valid = EAN13CheckDigit.INSTANCE.isValid(code);
 
+  // const upcnumber = {(route.params.data)}
   useEffect(() => {
+    console.log(route.params.data, "gdfhghjjlhkgjfhgjkl;kjhghj");
     axios
       .get(`https://bugi-api.herokuapp.com/api/product-details/667888093731`)
       .then((response) => {
@@ -18,6 +24,7 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
         console.log(error);
       });
   }, []);
+  //post
   return (
     <View style={styles.container}>
       <Text>Product Details</Text>

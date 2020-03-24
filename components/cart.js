@@ -5,11 +5,18 @@ import Tables from "../components/tables";
 import Receipt from "../components/receipt";
 import axios from "axios";
 import { route, navigation } from "@react-navigation/stack";
+import { useGlobal } from '../lib/globals';
+
 const Cart = ({ navigation: { navigate }, route }) => {
-  const { products } = route.params;
-  console.log(" product", products);
+
+  const { cartItems } = useGlobal();
+  console.log("cartItems in cart.js", cartItems);
+  // const { products } = route.params;
+  // console.log( " product", products);
+
   return [
-    <Tables selectedProducts={products} />,
+    <Tables selectedProducts={cartItems} />,
+    // <Tables />,
     <View style={styles.container}>
       <Button title="Continue Scanning" onPress={() => navigate("QRScanner")} />
       <ButtonWithBackground

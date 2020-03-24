@@ -17,20 +17,7 @@ export default function QRScanner({ navigation: { navigate } }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    console.log(type, data, "test herehhhhhhh")
-    setScanned(true);
-    // axios
-    //   .post(`https://bugi-api.herokuapp.com/api/product-details/:${data}`)
-    //   .then((response) => {
-    //     console.log("here");
-    //     console.log(data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    navigate("ProductsDetails", {data});
-
-    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    navigate("ProductsDetails", {data}); 
   };
 
   if (hasPermission === null) {
@@ -66,15 +53,12 @@ export default function QRScanner({ navigation: { navigate } }) {
       <ButtonWithBackground
         text="submit"
         color="#2C7873"
-        onPress={() => navigate("ProductsDetails")}
+        onPress={() => navigate("ProductsDetails", {data})}
         style={{
           alignSelf: 'center'
         }}
       />
 
-      {scanned && (
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-      )}
     </View>
   );
 }

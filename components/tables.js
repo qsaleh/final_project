@@ -87,10 +87,7 @@ class Tables extends Component {
       product.order_id,
 
     ]);
-<<<<<<< HEAD
     console.log("nestedData in tables.js", nestedData);
-=======
->>>>>>> 6386d4302d3dd20f7278ddf2b77b11a7829cc1eb
 
     return (
       <View style={styles.container}>

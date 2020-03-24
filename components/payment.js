@@ -21,16 +21,16 @@ const Payment = ({ navigation: { navigate } }) => {
       })
       .catch(err => console.log(err));
   }
-  return (
-    <View>
-      <Card />
+  return [
+    <Card />,
+    <View style={styles.container}>
       <ButtonWithBackground
         text="confirm payment"
         color="#2C7873"
         onPress={confirmPayment}
       />
     </View>
-  );
+  ];
 };
 
 const styles = StyleSheet.create({
@@ -38,8 +38,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+    marginBottom: 36
+  },
 });
 
 export default Payment;

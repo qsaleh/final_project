@@ -3,8 +3,15 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
+<<<<<<< HEAD
   "expoServerNgrokUrl": "https://ck-w5v.anonymous.final-project.exp.direct",
   "packagerNgrokUrl": "https://packager.ck-w5v.anonymous.final-project.exp.direct",
   "ngrokPid": 7524,
   "webpackServerPort": 19006
+=======
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "webpackServerPort": null
+>>>>>>> 6a29d5c6c823572f6a71dd00ac14839afdc6a115
 }

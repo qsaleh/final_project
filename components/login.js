@@ -5,19 +5,20 @@ import ButtonWithBackground from "../components/ButtonWithBackground";
 
 const LogIn = ({ navigation: { navigate } }) => {
   return (
-    <View >
+    <View style={styles.container}>
       <TextInput
         label='Email'
       />
       <TextInput
         label='password'
       />
+      <Text>Not a User?</Text>
       <ButtonWithBackground
+        style={styles.button}
         text="Log-In"
         color="#2C7873"
         onPress={() => navigate("QRScanner")}
       />
-      <Text>Not a User?</Text>
     </View>
   );
 };
@@ -26,8 +27,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+  },
+  button: {
+    flex: 1,
+    justifyContent: 'flex-end'
   }
 });
 

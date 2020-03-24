@@ -12,7 +12,11 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
   // heokuapp -api requires UPC-A
   // google it
   // boolean valid = EAN13CheckDigit.INSTANCE.isValid(code);
-  // const upcnumber = {(route.params.data)}
+
+  console.log('route.params.data', route.params.data);
+  const stringToSearch = `%${route.params.data.slice(3, 9)}%`;
+  console.log('stringToSearch', stringToSearch);
+
   useEffect(() => {
     console.log(route.params.data, "gdfhghjjlhkgjfhgjkl;kjhghj");
     axios
@@ -25,14 +29,19 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
         console.log(error);
       });
   }, []);
-  //post
+
   return (
     <View style={styles.container}>
-      <Text>Product Details</Text>
-      <Button title="Continue shopping" onPress={() => navigate("QRScanner")} />
-      {/* pass (params) onPress */}
-      <Button title="Add to Cart" onPress={() => addToCart(products)} />
-      <Button title="Cart" onPress={() => navigate("Cart")} />
+      <View style={styles.text}>
+        <Text>name: {product.name}</Text>
+        <Text>description: {product.description}</Text>
+        <Text>Picture: {product.picture}</Text>
+        <Text>price: ${product.price}</Text>
+      </View>
+      <View style={styles.bottom}>
+        <Button title="Continue shopping" onPress={() => navigate("QRScanner")} />
+        <Button title="Cart" onPress={() => navigate("Cart", { product })} />
+      </View>
     </View>
   );
 };
@@ -41,7 +50,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+  },
+  text: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-around",
+    marginHorizontal: 8,
+    marginVertical: 10
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 36
   }
 });
 export default ProductsDetails;
+

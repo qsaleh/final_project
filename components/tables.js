@@ -35,9 +35,16 @@ class Tables extends Component {
       .get(`https://bugi-api.herokuapp.com/api/orders`)
 
       .then((data) => {
-        const products = data.data;
-        this.setState((state) => ({ selectedProducts: [...state.selectedProducts, ...products] }));
+        // console.log("dataaaaaa", data);
 
+        const selectedProducts = data.data.map((item) => Object.values(item));
+
+        console.log("selectedProducts in tables.js", selectedProducts);
+        this.setState({ selectedProducts: selectedProducts });
+        this.setState((prevState) => ({
+          ...prevState,
+          selectedProducts: [...prevState.selectedProducts, ...selectedProducts]
+        }));
       })
       .catch((err) => {
         console.log(" catch here ", err);
@@ -80,6 +87,10 @@ class Tables extends Component {
       product.order_id,
 
     ]);
+<<<<<<< HEAD
+    console.log("nestedData in tables.js", nestedData);
+=======
+>>>>>>> 6386d4302d3dd20f7278ddf2b77b11a7829cc1eb
 
     return (
       <View style={styles.container}>

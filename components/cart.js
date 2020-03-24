@@ -7,7 +7,7 @@ import axios from "axios";
 import { route, navigation } from "@react-navigation/stack";
 const Cart = ({ navigation: { navigate }, route }) => {
   const { products } = route.params;
-  console.log( " product", products);
+  console.log(" product", products);
   return [
     <Tables selectedProducts={products} />,
     <View style={styles.container}>

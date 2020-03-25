@@ -68,7 +68,7 @@ export default function QRScanner({ navigation: { navigate } }) {
       <ButtonWithBackground
         text="submit"
         color="#2C7873"
-        onPress={() => navigate("ProductsDetails")}
+        onPress={() => navigate("ProductsDetails", {data})}
         style={{
           alignSelf: 'center',
           marginTop: 30

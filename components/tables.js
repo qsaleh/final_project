@@ -18,44 +18,55 @@ const styles = StyleSheet.create({
   text: { margin: 6 }
 });
 
+
 class Tables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedProducts: [],
+      selectedProducts: [...this.props.selectedProducts],
       tableHead: [
+        "Item",
         "quantity",
-        "product_id",
-        "order_id"
+        "unit price",
+        "subtotal"
       ]
     };
   }
   componentDidMount() {
-    axios
-      .get(`https://bugi-api.herokuapp.com/api/orders`)
+    // const selectedProducts = props.selectedProducts.map((item) => Object.values(item));
 
-      .then((data) => {
-        // console.log("dataaaaaa", data);
+    // console.log("selectedProducts in tables.js", selectedProducts);
+  
 
-        const selectedProducts = data.data.map((item) => Object.values(item));
+    // axios
+    //   .get(`https://bugi-api.herokuapp.com/api/orders`)
 
-        console.log("selectedProducts in tables.js", selectedProducts);
-        this.setState({ selectedProducts: selectedProducts });
-        this.setState((prevState) => ({
-          ...prevState,
-          selectedProducts: [...prevState.selectedProducts, ...selectedProducts]
-        }));
-      })
-      .catch((err) => {
-        console.log(" catch here ", err);
-      });
+    //   .then((data) => {
+    //     // console.log("dataaaaaa", data);
+
+    //     const selectedProducts = data.data.map((item) => Object.values(item));
+
+    //     console.log("selectedProducts in tables.js", selectedProducts);
+    //     this.setState({ selectedProducts: selectedProducts });
+    //     // this.setState((prevState) => ({
+    //     //   ...prevState,
+    //     //   selectedProducts: [...prevState.selectedProducts, ...selectedProducts]
+    //     // }));
+    //   })
+    //   .catch((err) => {
+    //     console.log(" catch here ", err);
+    //   });
   }
   IncrementItem = () => {
+   
     this.setState(state => {
+      console.log("state.selectedProducts", state.selectedProducts)
       const addItem = state.selectedProducts.map((product) => ({
-        quantity: product.quantity + 1,
-        product_id: product.product_id,
-        order_id: product.order_id
+        productName: product.productName,
+        qty: product.qty + 1,
+        subTotal: product.subTotal,
+        unitPrice: product.unitPrice,
+        upc: product.upc
       }));
       return {
         ...this.state,
@@ -67,9 +78,11 @@ class Tables extends Component {
   DecreaseItem = () => {
     this.setState(state => {
       const removeItem = state.selectedProducts.map((product) => ({
-        quantity: product.quantity - 1,
-        product_id: product.product_id,
-        order_id: product.order_id
+        productName: product.productName,
+        qty: product.qty + 1,
+        subTotal: product.subTotal,
+        unitPrice: product.unitPrice,
+        upc: product.upc
       }));
       return {
         ...this.state,
@@ -77,15 +90,17 @@ class Tables extends Component {
       };
     });
   };
+  
 
   render() {
-    const products = this.state.selectedProducts;
-
+    const products = this.props.selectedProducts;
+   
     const nestedData = products.map((product) => [
-      product.quantity,
-      product.product_id,
-      product.order_id,
-
+      product.productName,
+      product.qty,
+      product.unitPrice,
+      product.subTotal
+    
     ]);
     console.log("nestedData in tables.js", nestedData);
 

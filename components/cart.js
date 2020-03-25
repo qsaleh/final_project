@@ -5,10 +5,9 @@ import Tables from "../components/tables";
 import Receipt from "../components/receipt";
 import axios from "axios";
 import { route, navigation } from "@react-navigation/stack";
-import { useGlobal } from '../lib/globals';
+import { useGlobal } from "../lib/globals";
 
 const Cart = ({ navigation: { navigate }, route }) => {
-
   const { cartItems } = useGlobal();
   console.log("cartItems in cart.js", cartItems);
   // const { products } = route.params;
@@ -16,14 +15,19 @@ const Cart = ({ navigation: { navigate }, route }) => {
 
   return [
     <Tables selectedProducts={cartItems} />,
-    // <Tables />,
     <View style={styles.container}>
-      <Button title="Continue Scanning" onPress={() => navigate("QRScanner")} />
       <ButtonWithBackground
-        text="Pay Now"
+        text="Continue shopping"
         color="#2C7873"
-        onPress={() => navigate("Payment")}
+        onPress={() => navigate("QRScanner")}
       />
+      <View style={styles.button}>
+        <ButtonWithBackground
+          text="Pay Now"
+          color="#2C7873"
+          onPress={() => navigate("Payment")}
+        />
+      </View>
     </View>
   ];
 };
@@ -33,10 +37,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
-    justifyContent: 'flex-end',
-    marginBottom: 36
+    justifyContent: "center"
   },
+  button: {
+    flex: 1,
+    justifyContent: "flex-end",
+    backgroundColor: "#fff",
+    // alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 170
+  }
 });
 
 export default Cart;

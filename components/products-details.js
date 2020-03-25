@@ -6,7 +6,7 @@ import axios from "axios";
 import { useGlobal } from "../lib/globals";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
   const { addToCart } = useGlobal();
   // route.params.data is  (EAN-13)
   // heokuapp -api requires UPC-A
@@ -24,8 +24,8 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
         `https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`
       )
       .then((response) => {
-        setProducts(response.data[0]);
-        console.log("products", products);
+        setProduct(response.data[0]);
+        console.log("products", product);
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +45,8 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
           title="Continue shopping"
           onPress={() => navigate("QRScanner")}
         />
-        <Button title="Cart" onPress={() => navigate("Cart", { product })} />
+        <Button title="Cart" onPress={() => navigate("Cart")} />
+        <Button title="AddToCart" onPress={() => addToCart(product)} />
       </View>
     </View>
   );

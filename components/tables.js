@@ -36,7 +36,7 @@ class Tables extends Component {
     // const selectedProducts = props.selectedProducts.map((item) => Object.values(item));
 
     // console.log("selectedProducts in tables.js", selectedProducts);
-  
+
 
     // axios
     //   .get(`https://bugi-api.herokuapp.com/api/orders`)
@@ -58,13 +58,12 @@ class Tables extends Component {
     //   });
   }
   IncrementItem = () => {
-   
+
     this.setState(state => {
-      console.log("state.selectedProducts", state.selectedProducts)
       const addItem = state.selectedProducts.map((product) => ({
         productName: product.productName,
         qty: product.qty + 1,
-        subTotal: product.subTotal,
+        subTotal: product.subTotal + product.unitPrice,
         unitPrice: product.unitPrice,
         upc: product.upc
       }));
@@ -76,11 +75,12 @@ class Tables extends Component {
 
   };
   DecreaseItem = () => {
+    //if quantity is zero, remove the item
     this.setState(state => {
       const removeItem = state.selectedProducts.map((product) => ({
         productName: product.productName,
-        qty: product.qty + 1,
-        subTotal: product.subTotal,
+        qty: product.qty - 1,
+        subTotal: product.subTotal - product.unitPrice,
         unitPrice: product.unitPrice,
         upc: product.upc
       }));
@@ -90,17 +90,17 @@ class Tables extends Component {
       };
     });
   };
-  
+
 
   render() {
-    const products = this.props.selectedProducts;
-   
+    const products = this.state.selectedProducts;
+
     const nestedData = products.map((product) => [
       product.productName,
       product.qty,
       product.unitPrice,
       product.subTotal
-    
+
     ]);
     console.log("nestedData in tables.js", nestedData);
 

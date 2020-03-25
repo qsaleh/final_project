@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Button, key } from "react-native";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import Tables from "../components/tables";
@@ -13,6 +13,18 @@ const Cart = ({ navigation: { navigate }, route }) => {
   console.log("cartItems in cart.js", cartItems);
   // const { products } = route.params;
   // console.log( " product", products);
+
+  useEffect(() => {
+    axios
+      .post(`https://bugi-api.herokuapp.com/api/orders`)
+      .then((response) => {
+        setProduct(response.data[0]);
+        console.log("products", product);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return [
     <Tables selectedProducts={cartItems} />,

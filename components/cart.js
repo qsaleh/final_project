@@ -1,35 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Button, key } from "react-native";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import Tables from "../components/tables";
-import Receipt from "../components/receipt";
 import axios from "axios";
-import { route, navigation } from "@react-navigation/stack";
 import { useGlobal } from '../lib/globals';
 
-const Cart = ({ navigation: { navigate }, route }) => {
-
+const Cart = ({ navigation: { navigate } }) => {
   const { cartItems } = useGlobal();
   console.log("cartItems in cart.js", cartItems);
-  // const { products } = route.params;
-  // console.log( " product", products);
-
   const submitOrder = () => {
-
     return axios
-      .post(`https://bugi-api.herokuapp.com/api/products_orders`, { cartItems: [...cartItems] })
+      .post(`https://bugi-api.herokuapp.com/api/products-orders`, { cartItems: [...cartItems] })
       .then(() => {
         navigate("Payment")
       })
       .catch((error) => {
         console.log(error);
       });
-
   };
-
   return [
-    <Tables selectedProducts={cartItems} />,
-    // <Tables />,
+    <Tables />,
     <View style={styles.container}>
       <Button title="Continue Scanning" onPress={() => navigate("QRScanner")} />
       <ButtonWithBackground
@@ -40,7 +30,6 @@ const Cart = ({ navigation: { navigate }, route }) => {
     </View>
   ];
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -3,24 +3,26 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { route, navigation } from "@react-navigation/stack";
 import axios from "axios";
-import { useGlobal } from '../lib/globals';
+import { useGlobal } from "../lib/globals";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
   const [product, setProduct] = useState([]);
-  const { addToCart } = useGlobal()
+  const { addToCart } = useGlobal();
   // route.params.data is  (EAN-13)
   // heokuapp -api requires UPC-A
   // google it
   // boolean valid = EAN13CheckDigit.INSTANCE.isValid(code);
 
-  console.log('route.params.data', route.params.data);
+  console.log("route.params.data", route.params.data);
   const stringToSearch = `%${route.params.data.slice(3, 9)}%`;
-  console.log('stringToSearch', stringToSearch);
+  console.log("stringToSearch", stringToSearch);
 
   useEffect(() => {
     console.log(route.params.data, "gdfhghjjlhkgjfhgjkl;kjhghj");
     axios
-      .get(`https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`)
+      .get(
+        `https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`
+      )
       .then((response) => {
         setProduct(response.data[0]);
         console.log("products", product);
@@ -39,9 +41,12 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
         <Text>price: ${product.price}</Text>
       </View>
       <View style={styles.bottom}>
-        <Button title="Continue shopping" onPress={() => navigate("QRScanner")} />
-        <Button title="AddToCart" onPress={() => addToCart(product)} />
+        <Button
+          title="Continue shopping"
+          onPress={() => navigate("QRScanner")}
+        />
         <Button title="Cart" onPress={() => navigate("Cart")} />
+        <Button title="AddToCart" onPress={() => addToCart(product)} />
       </View>
     </View>
   );
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    alignItems: "center"
   },
   text: {
     flex: 1,
@@ -61,9 +66,8 @@ const styles = StyleSheet.create({
   },
   bottom: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
     marginBottom: 36
   }
 });
 export default ProductsDetails;
-

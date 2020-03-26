@@ -14,17 +14,18 @@ const Cart = ({ navigation: { navigate }, route }) => {
   // const { products } = route.params;
   // console.log( " product", products);
 
-  useEffect(() => {
-    axios
-      .post(`https://bugi-api.herokuapp.com/api/orders`)
-      .then((response) => {
-        setProduct(response.data[0]);
-        console.log("products", product);
+  const submitOrder = () => {
+
+    return axios
+      .post(`https://bugi-api.herokuapp.com/api/products_orders`, { cartItems: [...cartItems] })
+      .then(() => {
+        navigate("Payment")
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+
+  };
 
   return [
     <Tables selectedProducts={cartItems} />,
@@ -34,7 +35,7 @@ const Cart = ({ navigation: { navigate }, route }) => {
       <ButtonWithBackground
         text="Pay Now"
         color="#2C7873"
-        onPress={() => navigate("Payment")}
+        onPress={submitOrder}
       />
     </View>
   ];

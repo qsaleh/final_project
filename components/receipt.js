@@ -27,9 +27,10 @@ const Receipt = () => {
     product.qty,
     product.subTotal
   ]);
-  const total = nestedData.reduce(function (tot, product) {
+  const total = products.reduce(function (tot, product) {
     return tot + product.subTotal;
   }, 0);
+  console.log(total)
   return (
     <View style={styles.container}>
       <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>

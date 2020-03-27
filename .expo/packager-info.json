@@ -1,10 +1,19 @@
 {
   "devToolsPort": 19002,
+<<<<<<< HEAD
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 19001,
+  "expoServerNgrokUrl": "https://bj-4p2.qsaleh.final-project.exp.direct",
+  "packagerNgrokUrl": "https://packager.bj-4p2.qsaleh.final-project.exp.direct",
+  "ngrokPid": 19013,
+=======
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
   "expoServerNgrokUrl": null,
   "packagerNgrokUrl": null,
   "ngrokPid": null,
+>>>>>>> 70ad7d1903d40a070d91e09561c925b8fb274e74
   "webpackServerPort": null
 }

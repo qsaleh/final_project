@@ -80,13 +80,7 @@ export default function QRScanner({ navigation: { navigate } }) {
           alignItems: "center",
           margin: 5
         }}
-      >
-        <ButtonWithBackground
-          text="submit"
-          color="#2C7873"
-          onPress={() => navigate("ProductsDetails", { data })}
-        />
-      </View>
+      />  
     </View>
   );
 }

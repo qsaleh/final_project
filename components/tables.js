@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+
 import { StyleSheet, View, YellowBox, Button } from "react-native";
 import {
   Table,
@@ -11,113 +12,43 @@ import {
   Cell
 } from "react-native-table-component";
 import axios from "axios";
-
+import { useGlobal } from '../lib/globals';
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 50, backgroundColor: "#fff" },
   head: { height: 40, backgroundColor: "#f1f8ff" },
   text: { margin: 6 }
 });
 
+const Tables = () => {
+  const { cartItems, DecreaseItem, IncrementItem } = useGlobal();
+  const tableHead = [
+    "Item",
+    "quantity",
+    "unit price",
+    "subtotal"
+  ];
+  const products = cartItems;
+  const nestedData = products.map((product) => [
+    product.productName,
+    product.qty,
+    product.unitPrice,
+    product.subTotal
+  ]);
+  console.log("nestedData in tables.js", nestedData);
 
-class Tables extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedProducts: [...this.props.selectedProducts],
-      tableHead: [
-        "Item",
-        "quantity",
-        "unit price",
-        "subtotal"
-      ]
-    };
-  }
-  componentDidMount() {
-    // const selectedProducts = props.selectedProducts.map((item) => Object.values(item));
-
-    // console.log("selectedProducts in tables.js", selectedProducts);
-
-
-    // axios
-    //   .get(`https://bugi-api.herokuapp.com/api/orders`)
-
-    //   .then((data) => {
-    //     // console.log("dataaaaaa", data);
-
-    //     const selectedProducts = data.data.map((item) => Object.values(item));
-
-    //     console.log("selectedProducts in tables.js", selectedProducts);
-    //     this.setState({ selectedProducts: selectedProducts });
-    //     // this.setState((prevState) => ({
-    //     //   ...prevState,
-    //     //   selectedProducts: [...prevState.selectedProducts, ...selectedProducts]
-    //     // }));
-    //   })
-    //   .catch((err) => {
-    //     console.log(" catch here ", err);
-    //   });
-  }
-  IncrementItem = () => {
-
-    this.setState(state => {
-      const addItem = state.selectedProducts.map((product) => ({
-        productName: product.productName,
-        qty: product.qty + 1,
-        subTotal: product.subTotal + product.unitPrice,
-        unitPrice: product.unitPrice,
-        upc: product.upc
-      }));
-      return {
-        ...this.state,
-        selectedProducts: addItem
-      }
-    });
-
-  };
-  DecreaseItem = () => {
-    //if quantity is zero, remove the item
-    this.setState(state => {
-      const removeItem = state.selectedProducts.map((product) => ({
-        productName: product.productName,
-        qty: product.qty - 1,
-        subTotal: product.subTotal - product.unitPrice,
-        unitPrice: product.unitPrice,
-        upc: product.upc
-      }));
-      return {
-        ...this.state,
-        selectedProducts: removeItem
-      };
-    });
-  };
-
-
-  render() {
-    const products = this.state.selectedProducts;
-
-    const nestedData = products.map((product) => [
-      product.productName,
-      product.qty,
-      product.unitPrice,
-      product.subTotal
-
-    ]);
-    console.log("nestedData in tables.js", nestedData);
-
-    return (
-      <View style={styles.container}>
-        <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-          <Row
-            data={this.state.tableHead}
-            style={styles.head}
-            textStyle={styles.text}
-          />
-          <Rows data={nestedData} textStyle={styles.text} />
-          <Button title="+" onPress={this.IncrementItem} />
-          <Button title="-" onPress={this.DecreaseItem} />
-        </Table>
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+        <Row
+          data={tableHead}
+          style={styles.head}
+          textStyle={styles.text}
+        />
+        <Rows data={nestedData} textStyle={styles.text} />
+        <Button title="+" onPress={() => IncrementItem(cartItems)} />
+        <Button title="-" onPress={() => DecreaseItem(cartItems)} />
+      </Table>
+    </View>
+  );
 }
 export default Tables;

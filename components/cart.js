@@ -18,9 +18,14 @@ const Cart = ({ navigation: { navigate } }) => {
         console.log(error);
       });
   };
+  const total = cartItems.reduce(function (tot, product) {
+    return tot + product.subTotal;
+  }, 0);
+  console.log(total)
   return [
     <Tables />,
     <View style={styles.container}>
+      <Text>Total: ${total}</Text>
       <Button title="Continue Scanning" onPress={() => navigate("QRScanner")} />
       <ButtonWithBackground
         text="Pay Now"

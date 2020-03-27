@@ -24,6 +24,7 @@ const Tables = () => {
   const tableHead = [
     "Item",
     "quantity",
+    "qty +/-",
     "unit price",
     "subtotal"
   ];
@@ -31,6 +32,10 @@ const Tables = () => {
   const nestedData = products.map((product) => [
     product.productName,
     product.qty,
+    <View>
+      <Button title="+" onPress={() => IncrementItem(product)} />
+      <Button title="-" onPress={() => DecreaseItem(product)} />
+    </View>,
     product.unitPrice,
     product.subTotal
   ]);
@@ -45,8 +50,6 @@ const Tables = () => {
           textStyle={styles.text}
         />
         <Rows data={nestedData} textStyle={styles.text} />
-        <Button title="+" onPress={() => IncrementItem(cartItems)} />
-        <Button title="-" onPress={() => DecreaseItem(cartItems)} />
       </Table>
     </View>
   );

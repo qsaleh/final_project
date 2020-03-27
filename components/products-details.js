@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { route, navigation } from "@react-navigation/stack";
+import ButtonWithBackground from "../components/ButtonWithBackground";
 import axios from "axios";
 import { useGlobal } from "../lib/globals";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
   const [product, setProduct] = useState([]);
   const { addToCart } = useGlobal();
-  // route.params.data is  (EAN-13)
-  // heokuapp -api requires UPC-A
-  // google it
-  // boolean valid = EAN13CheckDigit.INSTANCE.isValid(code);
 
   console.log("route.params.data", route.params.data);
   const stringToSearch = `%${route.params.data.slice(3, 9)}%`;
@@ -37,16 +34,25 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
       <View style={styles.text}>
         <Text>name: {product.name}</Text>
         <Text>description: {product.description}</Text>
-        <Text>Picture: {product.picture}</Text>
+        <Image
+          style={styles.img}
+          source={{ uri: "https://bugi-api.herokuapp.com" + product.picture }}
+        />
         <Text>price: ${product.price}</Text>
       </View>
       <View style={styles.bottom}>
-        <Button
-          title="Continue shopping"
+        <ButtonWithBackground
+          text="Continue shopping"
+          color="#2C7873"
           onPress={() => navigate("QRScanner")}
         />
-        <Button title="Cart" onPress={() => navigate("Cart")} />
-        <Button title="AddToCart" onPress={() => addToCart(product)} />
+        <View style={styles.bottom}>
+          <ButtonWithBackground
+            text="AddToCart"
+            color="#2C7873"
+            onPress={() => addToCart(product)}
+          />
+        </View>
       </View>
     </View>
   );
@@ -55,19 +61,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   },
   text: {
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    marginHorizontal: 8,
-    marginVertical: 10
+    marginVertical: 20
   },
   bottom: {
     flex: 1,
     justifyContent: "flex-end",
-    marginBottom: 36
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 122
+  },
+  img: {
+    width: 10,
+    height: 20,
+    resizeMode: "stretch"
   }
 });
 export default ProductsDetails;

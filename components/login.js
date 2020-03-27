@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { TextInput } from 'react-native-paper';
+import { TextInput } from "react-native-paper";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 
 const LogIn = ({ navigation: { navigate } }) => {
@@ -19,45 +19,34 @@ const LogIn = ({ navigation: { navigate } }) => {
  }
   return (
     <View style={styles.container}>
-       <TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
-               placeholder = "Email"
-               placeholderTextColor = "#9a73ef"
-               autoCapitalize = "none"
-              //  onChangeText = {this.handleEmail}
-              />
-     <TextInput secureTextEntry={true} 
-            style = {styles.input}
-               underlineColorAndroid = "transparent"
-               placeholder = "Password"
-               placeholderTextColor = "#9a73ef"
-               autoCapitalize = "none"
-              //  onChangeText = {this.handlePassword}
-               />
-      
-      <ButtonWithBackground
-        style={styles.button}
-        text="Log-In"
-        color="#2C7873"
-        onPress={() => navigate("QRScanner")}
-      />
+      <TextInput label="Email" />
+      <TextInput label="password" />
+      <Text>Not a User?</Text>
+      <View style={styles.button}>
+        <ButtonWithBackground
+          style={styles.button}
+          text="Log-In"
+          color="#2C7873"
+          onPress={() => navigate("QRScanner")}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 23
- },
- input: {
-    margin: 15,
-    height: 40,
-    borderColor: '#7a42f4',
-    borderWidth: 1
- },
+    flex: 1,
+    backgroundColor: "#fff"
+  },
   button: {
     flex: 1,
-    justifyContent: 'flex-end'
+    justifyContent: "flex-end",
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    justifyContent: "flex-end",
+    marginBottom: 460
   }
 });
 

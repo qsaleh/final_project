@@ -36,7 +36,7 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
         <Text>description: {product.description}</Text>
         <Image
           style={styles.img}
-          source={{ uri: "https://bugi-api.herokuapp.com" + product.picture }}
+          source={{ uri:  product.picture }}
         />
         <Text>price: ${product.price}</Text>
       </View>
@@ -79,9 +79,9 @@ const styles = StyleSheet.create({
     marginBottom: 122
   },
   img: {
-    width: 10,
-    height: 20,
-    resizeMode: "stretch"
+    width: 150,
+    height: 150,
+    // resizeMode: "stretch"
   }
 });
 export default ProductsDetails;

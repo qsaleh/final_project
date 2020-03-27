@@ -73,7 +73,7 @@ export default function QRScanner({ navigation: { navigate } }) {
           alignSelf: 'center',
           marginTop: 30
         }}
-      />
+      />  
     </View>
   );
 }

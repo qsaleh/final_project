@@ -26,7 +26,7 @@ export default function AppNavigator() {
       <Stack.Screen
         name="ProductsDetails"
         component={ProductDetails}
-        options={({ route, navigation: { navigate } }) => ({
+        options={({  navigation: { navigate } }) => ({
           headerRight: () => (
             <Button onPress={() => navigate("Cart")} title="My Cart" />
           ),

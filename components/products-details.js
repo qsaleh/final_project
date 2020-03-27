@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { route, navigation } from "@react-navigation/stack";
-import ButtonWithBackground from "../components/ButtonWithBackground";
-
 import axios from "axios";
 import { useGlobal } from "../lib/globals";
 
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
   const [product, setProduct] = useState([]);
   const { addToCart } = useGlobal();
+  // route.params.data is  (EAN-13)
+  // heokuapp -api requires UPC-A
+  // google it
+  // boolean valid = EAN13CheckDigit.INSTANCE.isValid(code);
 
   console.log("route.params.data", route.params.data);
   const stringToSearch = `%${route.params.data.slice(3, 9)}%`;
@@ -39,18 +41,12 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
         <Text>price: ${product.price}</Text>
       </View>
       <View style={styles.bottom}>
-        <ButtonWithBackground
-          text="Continue shopping"
-          color="#2C7873"
+        <Button
+          title="Continue shopping"
           onPress={() => navigate("QRScanner")}
         />
-        <View style={styles.bottom}>
-          <ButtonWithBackground
-            text="AddToCart"
-            color="#2C7873"
-            onPress={() => addToCart(product)}
-          />
-        </View>
+        <Button title="Cart" onPress={() => navigate("Cart")} />
+        <Button title="AddToCart" onPress={() => addToCart(product)} />
       </View>
     </View>
   );
@@ -59,22 +55,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: "center"
   },
   text: {
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    marginVertical: 20
+    marginHorizontal: 8,
+    marginVertical: 10
   },
   bottom: {
     flex: 1,
     justifyContent: "flex-end",
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 122
+    marginBottom: 36
   }
 });
 export default ProductsDetails;

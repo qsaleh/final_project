@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-paper";
 import ButtonWithBackground from "../components/ButtonWithBackground";
@@ -7,16 +7,16 @@ const LogIn = ({ navigation: { navigate } }) => {
   state = {
     email: '',
     password: ''
- }
- handleEmail = (text) => {
+  }
+  handleEmail = (text) => {
     this.setState({ email: text })
- }
- handlePassword = (text) => {
+  }
+  handlePassword = (text) => {
     this.setState({ password: text })
- }
- login = (email, pass) => {
+  }
+  login = (email, pass) => {
     alert('email: ' + email + ' password: ' + pass)
- }
+  }
   return (
     <View style={styles.container}>
       <TextInput label="Email" />
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     justifyContent: "flex-end",
-    marginBottom: 460
+    marginBottom: 300
   }
 });
 

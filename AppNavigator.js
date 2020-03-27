@@ -26,7 +26,7 @@ export default function AppNavigator() {
       <Stack.Screen
         name="ProductsDetails"
         component={ProductDetails}
-        options={({  navigation: { navigate } }) => ({
+        options={({ navigation: { navigate } }) => ({
           headerRight: () => (
             <Button onPress={() => navigate("Cart")} title="My Cart" />
           ),
@@ -34,7 +34,15 @@ export default function AppNavigator() {
           headerStyle: { backgroundColor: "tomato" }
         })}
       />
-      <Stack.Screen name="Cart" component={Cart} options={headerOptions} />
+      <Stack.Screen
+        name="Cart" component={Cart}
+        options={({ navigation: { navigate } }) => ({
+          headerRight: () => (
+            <Button onPress={() => navigate("QRScanner")} title="Shop again" />
+          ),
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: "tomato" }
+        })} />
       <Stack.Screen
         name="Payment"
         component={Payment}

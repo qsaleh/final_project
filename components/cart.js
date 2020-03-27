@@ -28,13 +28,9 @@ const Cart = ({ navigation: { navigate }, route }) => {
   return [
     <Tables selectedProducts={cartItems} />,
     <View style={styles.container}>
-      <Text>Total: ${total}</Text>
-      <Button title="Continue Scanning" onPress={() => navigate("QRScanner")} />
-      <ButtonWithBackground
-        text="Continue shopping"
-        color="#2C7873"
-        onPress={() => navigate("QRScanner")}
-      />
+      <View style={styles.total}>
+        <Text>Total: ${total}</Text>
+      </View>
       <View style={styles.button}>
         <ButtonWithBackground
           text="Pay Now"
@@ -50,15 +46,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "flex-start"
   },
   button: {
     flex: 1,
     justifyContent: "flex-end",
     backgroundColor: "#fff",
-    // alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 170
+    marginBottom: 100
+  },
+  total: {
+    flex: 1,
+    backgroundColor: "#fff"
   }
 });
 

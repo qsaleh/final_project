@@ -28,7 +28,6 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
         console.log(error);
       });
   }, []);
-
   return (
 
     <View style={styles.container}>

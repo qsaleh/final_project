@@ -39,7 +39,6 @@ const Tables = () => {
     product.unitPrice,
     product.subTotal
   ]);
-  console.log("nestedData in tables.js", nestedData);
 
   return (
     <View style={styles.container}>

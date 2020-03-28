@@ -3,12 +3,11 @@ import { StyleSheet, Text, View, Button, key } from "react-native";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import Tables from "../components/tables";
 import axios from "axios";
-import { route, navigation } from "@react-navigation/stack";
+import { navigation } from "@react-navigation/stack";
 import { useGlobal } from "../lib/globals";
 
-const Cart = ({ navigation: { navigate }, route }) => {
+const Cart = ({ navigation: { navigate } }) => {
   const { cartItems } = useGlobal();
-  console.log("cartItems in cart.js", cartItems);
   const submitOrder = () => {
     return axios
       .post(`https://bugi-api.herokuapp.com/api/products-orders`, {

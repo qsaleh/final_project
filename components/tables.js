@@ -1,22 +1,12 @@
 import React from "react";
 
-import { StyleSheet, View, YellowBox, Button } from "react-native";
-import {
-  Table,
-  TableWrapper,
-  Text,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  Cell
-} from "react-native-table-component";
-import axios from "axios";
+import { StyleSheet, View, Button } from "react-native";
+import { Table, Row, Rows } from "react-native-table-component";
 import { useGlobal } from '../lib/globals';
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 50, backgroundColor: "#fff" },
   head: { height: 40, backgroundColor: "#f1f8ff" },
-  text: { margin: 6 }
+  text: { margin: 6, justifyContent: "center", alignItems: "center" }
 });
 
 const Tables = () => {
@@ -25,7 +15,7 @@ const Tables = () => {
     "Item",
     "quantity",
     "qty +/-",
-    "unit price",
+    "price",
     "subtotal"
   ];
   const products = cartItems;

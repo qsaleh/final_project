@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
-import { Actions } from "react-native-router-flux";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { route, navigation } from "@react-navigation/stack";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import axios from "axios";
@@ -9,13 +8,7 @@ import { useGlobal } from "../lib/globals";
 const ProductsDetails = ({ route, navigation: { navigate } }) => {
   const [product, setProduct] = useState([]);
   const { addToCart } = useGlobal();
-
-  console.log("route.params.data", route.params.data);
-  const stringToSearch = `%${route.params.data.slice(3, 9)}%`;
-  console.log("stringToSearch", stringToSearch);
-
   useEffect(() => {
-    console.log(route.params.data, "gdfhghjjlhkgjfhgjkl;kjhghj");
     axios
       .get(
         `https://bugi-api.herokuapp.com/api/product-details/${route.params.data}`
@@ -80,7 +73,6 @@ const styles = StyleSheet.create({
   img: {
     width: 150,
     height: 150,
-    // resizeMode: "stretch"
   }
 });
 export default ProductsDetails;

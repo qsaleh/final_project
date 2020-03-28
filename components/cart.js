@@ -3,30 +3,40 @@ import { StyleSheet, Text, View, Button, key } from "react-native";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import Tables from "../components/tables";
 import axios from "axios";
-import { useGlobal } from '../lib/globals';
+import { navigation } from "@react-navigation/stack";
+import { useGlobal } from "../lib/globals";
 
 const Cart = ({ navigation: { navigate } }) => {
   const { cartItems } = useGlobal();
-  console.log("cartItems in cart.js", cartItems);
   const submitOrder = () => {
     return axios
-      .post(`https://bugi-api.herokuapp.com/api/products-orders`, { cartItems: [...cartItems] })
+      .post(`https://bugi-api.herokuapp.com/api/products-orders`, {
+        cartItems: [...cartItems]
+      })
       .then(() => {
-        navigate("Payment")
+        navigate("Payment");
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  const total = cartItems.reduce(function (tot, product) {
+    return tot + product.subTotal;
+  }, 0);
+  console.log(total)
   return [
-    <Tables />,
+    <Tables selectedProducts={cartItems} />,
     <View style={styles.container}>
-      <Button title="Continue Scanning" onPress={() => navigate("QRScanner")} />
-      <ButtonWithBackground
-        text="Pay Now"
-        color="#2C7873"
-        onPress={submitOrder}
-      />
+      <View style={styles.total}>
+        <Text>Total: ${total}</Text>
+      </View>
+      <View style={styles.button}>
+        <ButtonWithBackground
+          text="Pay Now"
+          color="#2C7873"
+          onPress={() => navigate("Payment")}
+        />
+      </View>
     </View>
   ];
 };
@@ -35,10 +45,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
-    justifyContent: 'flex-end',
-    marginBottom: 36
+    justifyContent: "flex-start"
   },
+  button: {
+    flex: 1,
+    justifyContent: "flex-end",
+    backgroundColor: "#fff",
+    marginBottom: 100
+  },
+  total: {
+    flex: 1,
+    backgroundColor: "#fff"
+  }
 });
 
 export default Cart;

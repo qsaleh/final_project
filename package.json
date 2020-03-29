@@ -35,10 +35,7 @@
     "react-native-table-component": "^1.2.1",
     "react-native-unimodules": "~0.7.0",
     "react-native-web": "~0.11.7",
-    "react-navigation": "^4.2.2",
-    "react-redux": "^7.2.0",
-    "redux": "^4.0.5",
-    "redux-axios-middleware": "^4.0.1"
+    "react-navigation": "^4.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -46,7 +43,8 @@
     "babel-preset-expo": "~8.0.0",
     "jest": "~24.9.0",
     "metro-react-native-babel-preset": "~0.56.0",
-    "react-test-renderer": "~16.9.0"
+    "react-test-renderer": "~16.9.0",
+    "redux-devtools": "^3.5.0"
   },
   "private": true
 }

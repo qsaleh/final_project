@@ -1,81 +1,45 @@
-import React, { Component } from "react";
-import { StyleSheet, View, YellowBox } from "react-native";
-import ButtonWithBackground from "../components/ButtonWithBackground";
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
+import { Table, Row, Rows } from "react-native-table-component";
+import { useGlobal } from '../lib/globals';
 
-import {
-  Table,
-  TableWrapper,
-  Text,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  Cell
-} from "react-native-table-component";
-import axios from "axios";
+const Receipt = () => {
+  const { cartItems } = useGlobal();
+  const tableHead = [
+    "Item",
+    "quantity",
+    "subtotal"
+  ];
+  const products = cartItems;
+  const nestedData = products.map((product) => [
+    product.productName,
+    product.qty,
+    product.subTotal
+  ]);
+  const total = products.reduce(function (tot, product) {
+    return tot + product.subTotal;
+  }, 0);
+  return (
+    <View style={styles.container}>
+      <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+        <Row
+          data={tableHead}
+          style={styles.head}
+          textStyle={styles.text}
+        />
+        <Rows data={nestedData} textStyle={styles.text} />
+      </Table>
+      <View style={styles.total}>
+        <Text>Total: ${total}</Text>
+      </View>
+    </View>
+  );
+}
+export default Receipt;
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
   head: { height: 40, backgroundColor: "#f1f8ff" },
-  text: { margin: 6 }
+  text: { margin: 6 },
+  total: { flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#fff" }
 });
-
-class Receipt extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedProducts: [],
-      tableHead: ["Total Price", "$Total", "500$"]
-
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get(`https://bugi-api.herokuapp.com/api/orders`)
-
-      .then((data) => {
-        const selectedProducts = data.data.map((item) => Object.values(item));
-
-        console.log("selectedProducts in receipt", selectedProducts);
-        this.setState({ selectedProducts: selectedProducts });
-        this.setState((prevState) => ({
-          ...prevState,
-          selectedProducts: [...prevState.selectedProducts, ...selectedProducts]
-        }));
-      })
-      .catch((err) => {
-        console.log(" catch here ", err);
-      });
-  }
-
-  render() {
-    const product = this.state.selectedProducts;
-    console.log("product", product);
-
-    return (
-      <View style={styles.container}>
-        <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-          <Row
-            data={this.state.tableHead}
-            style={styles.head}
-            textStyle={styles.text}
-          />
-
-          {product.map((item, i) => {
-            return <Row data={item} key={i} textStyle={styles.text} />;
-          })}
-        </Table>
-      </View>
-    );
-  }
-}
-
-export default Receipt;
-
-//axios.get("api/orders")
-//without htableHead
-//Confirmation note
-//add style to make it diiferent from Cart
-// Button to continue scanning
-//Button for logout

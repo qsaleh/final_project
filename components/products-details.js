@@ -43,7 +43,9 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
           <ButtonWithBackground
             text="AddToCart"
             color="#4285f4"
-            onPress={() => addToCart(product)}
+            onPress={() => {
+              addToCart(product)
+              alert(`${product.name} added. Go to cart to check-out.`)}}
           />
         </View>
       </View>

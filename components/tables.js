@@ -22,8 +22,8 @@ const Tables = () => {
         ))
         }
       </View>
-      {cartItems.map((product, index) => (
-        <View key={index} style={styles.tableView}>
+      {cartItems.map((product) => (
+        <View key={product.productName} style={styles.tableView}>
           <View textStyle={styles.text} style={styles.row}>
             <Text>{product.productName}</Text>
           </View>

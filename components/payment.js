@@ -17,7 +17,6 @@ const Payment = ({ navigation: { navigate } }) => {
       })
       .then((res) => {
         navigate("Receipt");
-        console.log(res);
       })
       .catch((err) => console.log(err));
   };

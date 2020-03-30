@@ -15,15 +15,15 @@ const Tables = () => {
   return (
     <View style={styles.container}>
       <View style={[styles.tableView, { backgroundColor: "red" }]}>
-        {tableHead.map((headData, index) => (
-          <View key={index} textStyle={styles.text} style={styles.row}>
+        {tableHead.map((headData) => (
+          <View key={headData} textStyle={styles.text} style={styles.row}>
             <Text>{headData}</Text>
           </View>
         ))
         }
       </View>
-      {cartItems.map((product) => (
-        <View key={product.productName} style={styles.tableView}>
+      {cartItems.map((product, index) => (
+        <View key={index} style={styles.tableView}>
           <View textStyle={styles.text} style={styles.row}>
             <Text>{product.productName}</Text>
           </View>

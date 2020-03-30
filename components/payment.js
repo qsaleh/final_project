@@ -26,7 +26,7 @@ const Payment = ({ navigation: { navigate } }) => {
     <View style={styles.container}>
       <ButtonWithBackground
         text="Confirm payment"
-        color="#2C7873"
+        color="#4285f4"
         onPress={confirmPayment}
       />
     </View>

@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
   button: {
     padding: 16,
     width: 200,
-    borderRadius: 24,
+    borderRadius: 10,
     alignItems: "center"
   },
   text: {
     color: "white",
-    fontSize: 24
+    fontSize: 20
   }
 });
 

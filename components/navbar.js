@@ -51,7 +51,7 @@ function MyStack() {
         component={Home}
         options={{
           headerTintColor: 'white',
-          headerStyle: { backgroundColor: 'tomato' },
+          headerStyle: { backgroundColor: '#ff5722' },
         }}
       />
       <Stack.Screen

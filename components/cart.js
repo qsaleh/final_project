@@ -33,7 +33,7 @@ const Cart = ({ navigation: { navigate } }) => {
       <View style={styles.button}>
         <ButtonWithBackground
           text="Pay Now"
-          color="#2C7873"
+          color="#4285f4"
           onPress={() => navigate("Payment")}
         />
       </View>

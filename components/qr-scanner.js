@@ -17,8 +17,7 @@ export default function QRScanner({ navigation: { navigate } }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    console.log(type, data, "test herehhhhhhh");
-    setScanned(true);
+    // setScanned(true);
 
     navigate("ProductsDetails", { data });
   };
@@ -70,7 +69,7 @@ export default function QRScanner({ navigation: { navigate } }) {
           <ButtonWithBackground
             text={"Tap to Scan Again"}
             color="#2C7873"
-            onPress={() => setScanned(false)}
+            // onPress={() => setScanned(false)}
           />
         ))}
       <View

@@ -36,13 +36,13 @@ const ProductsDetails = ({ route, navigation: { navigate } }) => {
       <View style={styles.bottom}>
         <ButtonWithBackground
           text="Continue shopping"
-          color="#2C7873"
+          color="#4285f4"
           onPress={() => navigate("QRScanner")}
         />
         <View style={styles.bottom}>
           <ButtonWithBackground
             text="AddToCart"
-            color="#2C7873"
+            color="#4285f4"
             onPress={() => addToCart(product)}
           />
         </View>
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+    fontSize: 20,
     alignItems: "center",
     justifyContent: "space-around",
     marginVertical: 20

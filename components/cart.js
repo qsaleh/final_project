@@ -20,16 +20,10 @@ const Cart = ({ navigation: { navigate } }) => {
         console.log(error);
       });
   };
-  const total = cartItems.reduce(function (tot, product) {
-    return tot + product.subTotal;
-  }, 0);
-  console.log(total)
+
   return [
     <Tables selectedProducts={cartItems} />,
     <View style={styles.container}>
-      <View style={styles.total}>
-        <Text>Total: ${total}</Text>
-      </View>
       <View style={styles.button}>
         <ButtonWithBackground
           text="Pay Now"

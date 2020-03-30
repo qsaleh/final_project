@@ -20,7 +20,9 @@ const Cart = ({ navigation: { navigate } }) => {
         console.log(error);
       });
   };
-
+  const total = cartItems.reduce(function (tot, product) {
+    return tot + product.subTotal;
+  }, 0);
   return [
     <Tables selectedProducts={cartItems} />,
     <View style={styles.container}>

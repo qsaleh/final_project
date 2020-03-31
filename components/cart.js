@@ -23,13 +23,9 @@ const Cart = ({ navigation: { navigate } }) => {
   const total = cartItems.reduce(function (tot, product) {
     return tot + product.subTotal;
   }, 0);
-  console.log(total)
   return [
-    <Tables selectedProducts={cartItems} />,
-    <View style={styles.container}>
-      <View style={styles.total}>
-        <Text>Total: ${total}</Text>
-      </View>
+    <Tables key={1} selectedProducts={cartItems} />,
+    <View key={2} style={styles.container}>
       <View style={styles.button}>
         <ButtonWithBackground
           text="Pay Now"

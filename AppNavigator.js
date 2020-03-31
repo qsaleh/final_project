@@ -6,7 +6,7 @@ import Cart from "./components/cart";
 import Receipt from "./components/receipt";
 import Payment from "./components/payment";
 import { createStackNavigator } from "@react-navigation/stack";
-import {CartButton} from "./components/cartButton";
+import { CartButton } from "./components/cartButton";
 import { Button } from "react-native";
 import { navigation } from "@react-navigation/stack";
 
@@ -24,6 +24,16 @@ export default function AppNavigator() {
         component={QRScanner}
         options={headerOptions}
       />
+
+      <Stack.Screen
+        name="Cart" component={Cart}
+        options={({ navigation: { navigate } }) => ({
+          headerRight: () => (
+            <Button onPress={() => navigate("QRScanner")} title="Continue Shopping" />
+          ),
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: "#ff5722" }
+        })} />
       <Stack.Screen
         name="ProductsDetails"
         component={ProductDetails}
@@ -36,15 +46,6 @@ export default function AppNavigator() {
           headerStyle: { backgroundColor: "#ff5722" }
         })}
       />
-      <Stack.Screen
-        name="Cart" component={Cart}
-        options={({ navigation: { navigate } }) => ({
-          headerRight: () => (
-            <Button onPress={() => navigate("QRScanner")} title="Continue Shopping" />
-          ),
-          headerTintColor: "white",
-          headerStyle: { backgroundColor: "#ff5722" }
-        })} />
       <Stack.Screen
         name="Payment"
         component={Payment}

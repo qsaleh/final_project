@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 });
 
 const Tables = () => {
-  const { cartItems, DecreaseItem, IncrementItem } = useGlobal();
+  const { cartItems, DecreaseItem, IncrementItem, RemoveItem } = useGlobal();
   const tableHead = [
     "Item",
     "quantity",
@@ -25,6 +25,7 @@ const Tables = () => {
     <View>
       <Button title="+" onPress={() => IncrementItem(product)} />
       <Button title="-" onPress={() => DecreaseItem(product)} />
+      <Button title="x" onPress={() => RemoveItem(product)} style={{ color: "red" }} />
     </View>,
     product.unitPrice,
     product.subTotal

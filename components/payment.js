@@ -22,8 +22,8 @@ const Payment = ({ navigation: { navigate } }) => {
       .catch((err) => console.log(err));
   };
   return [
-    <Card />,
-    <View style={styles.container}>
+    <Card key={1} />,
+    <View key={2} style={styles.container}>
       <ButtonWithBackground
         text="Confirm payment"
         color="#4285f4"

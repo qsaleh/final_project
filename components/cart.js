@@ -24,8 +24,8 @@ const Cart = ({ navigation: { navigate } }) => {
     return tot + product.subTotal;
   }, 0);
   return [
-    <Tables selectedProducts={cartItems} />,
-    <View style={styles.container}>
+    <Tables key={1} selectedProducts={cartItems} />,
+    <View key={2} style={styles.container}>
       <View style={styles.button}>
         <ButtonWithBackground
           text="Pay Now"

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, View, Button } from "react-native";
+import { StyleSheet, View, Button, ScrollView } from "react-native";
 import { Table, Row, Rows } from "react-native-table-component";
 import { useGlobal } from '../lib/globals';
 const styles = StyleSheet.create({
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 });
 
 const Tables = () => {
-  const { cartItems, DecreaseItem, IncrementItem } = useGlobal();
+  const { cartItems, DecreaseItem, IncrementItem, RemoveItem } = useGlobal();
   const tableHead = [
     "Item",
     "quantity",
@@ -25,6 +25,7 @@ const Tables = () => {
     <View>
       <Button title="+" onPress={() => IncrementItem(product)} />
       <Button title="-" onPress={() => DecreaseItem(product)} />
+      <Button title="x" onPress={() => RemoveItem(product)} style={{ color: "red" }} />
     </View>,
     product.unitPrice,
     product.subTotal
@@ -32,14 +33,16 @@ const Tables = () => {
 
   return (
     <View style={styles.container}>
-      <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-        <Row
-          data={tableHead}
-          style={styles.head}
-          textStyle={styles.text}
-        />
-        <Rows data={nestedData} textStyle={styles.text} />
-      </Table>
+      <ScrollView>
+        <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+          <Row
+            data={tableHead}
+            style={styles.head}
+            textStyle={styles.text}
+          />
+          <Rows data={nestedData} textStyle={styles.text} />
+        </Table>
+      </ScrollView>
     </View>
   );
 }

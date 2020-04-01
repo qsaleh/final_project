@@ -1,16 +1,16 @@
 import AppNavigator from "./AppNavigator";
-import * as React from 'react';
-import { View, Button, Text, Animated } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import * as React from "react";
+import { View, Button, Text, Animated } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 function Home({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Home screen</Text>
       <Button
         title="Go to Profile"
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate("Profile")}
       />
     </View>
   );
@@ -18,7 +18,7 @@ function Home({ navigation }) {
 
 function Profile({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Profile screen</Text>
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
@@ -31,14 +31,14 @@ const forFade = ({ current, next }) => {
     next ? next.progress : 0
   ).interpolate({
     inputRange: [0, 1, 2],
-    outputRange: [0, 1, 0],
+    outputRange: [0, 1, 0]
   });
 
   return {
     leftButtonStyle: { opacity },
     rightButtonStyle: { opacity },
     titleStyle: { opacity },
-    backgroundStyle: { opacity },
+    backgroundStyle: { opacity }
   };
 };
 
@@ -51,8 +51,8 @@ function MyStack() {
         name="Home"
         component={Home}
         options={{
-          headerTintColor: 'white',
-          headerStyle: { backgroundColor: 'tomato' },
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: "tomato" }
         }}
       />
       <Stack.Screen
@@ -67,11 +67,7 @@ function MyStack() {
 export default function App() {
   return (
     <NavigationContainer>
-      {/* <MyStack />, */}
       <AppNavigator />
-
     </NavigationContainer>
   );
 }
-
-

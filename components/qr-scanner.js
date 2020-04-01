@@ -1,9 +1,7 @@
-import React, { useState, useEffect, Component } from "react";
-import { Text, TextInput, View, StyleSheet, Button } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, TextInput, View } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import ButtonWithBackground from "../components/ButtonWithBackground";
-import { navigation } from "@react-navigation/stack";
-import axios from "axios";
 
 export default function QRScanner({ navigation: { navigate } }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -17,8 +15,6 @@ export default function QRScanner({ navigation: { navigate } }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    // setScanned(true);
-
     navigate("ProductsDetails", { data });
   };
 
@@ -65,13 +61,7 @@ export default function QRScanner({ navigation: { navigate } }) {
             }}
           />
         ),
-        (
-          <ButtonWithBackground
-            text={"Tap to Scan Again"}
-            color="#2C7873"
-            // onPress={() => setScanned(false)}
-          />
-        ))}
+        (<ButtonWithBackground text={"Tap to Scan Again"} color="#2C7873" />))}
       <View
         style={{
           display: "flex",
@@ -79,7 +69,7 @@ export default function QRScanner({ navigation: { navigate } }) {
           alignItems: "center",
           margin: 5
         }}
-      />  
+      />
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Componet } from "react";
+import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 const buttonWithBackground = (props) => {

@@ -1,8 +1,8 @@
 {
   "dev": true,
   "minify": false,
-  "https": false,
   "hostType": "lan",
   "lanType": "ip",
-  "urlRandomness": "n5-isv"
+  "urlRandomness": "n5-isv",
+  "https": false
 }

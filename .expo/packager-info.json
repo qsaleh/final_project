@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19004,
+  "packagerPid": 7205,
+  "expoServerNgrokUrl": "https://n5-isv.anonymous.final-project.exp.direct",
+  "packagerNgrokUrl": "https://packager.n5-isv.anonymous.final-project.exp.direct",
+  "ngrokPid": 7236,
   "devToolsPort": 19002
 }

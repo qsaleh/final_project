@@ -6,9 +6,7 @@ import Cart from "./components/cart";
 import Receipt from "./components/receipt";
 import Payment from "./components/payment";
 import { createStackNavigator } from "@react-navigation/stack";
-import { CartButton } from "./components/cartButton";
 import { Button } from "react-native";
-import { navigation } from "@react-navigation/stack";
 
 export default function AppNavigator() {
   const Stack = createStackNavigator();
@@ -26,21 +24,30 @@ export default function AppNavigator() {
       />
 
       <Stack.Screen
-        name="Cart" component={Cart}
+        name="Cart"
+        component={Cart}
         options={({ navigation: { navigate } }) => ({
           headerRight: () => (
-            <Button onPress={() => navigate("QRScanner")} title="Continue Shopping" />
+            <Button
+              onPress={() => navigate("QRScanner")}
+              title="Continue Shopping"
+              color="#fff"
+            />
           ),
           headerTintColor: "white",
           headerStyle: { backgroundColor: "#ff5722" }
-        })} />
+        })}
+      />
       <Stack.Screen
         name="ProductsDetails"
         component={ProductDetails}
         options={({ navigation: { navigate } }) => ({
           headerRight: () => (
-            // <CartButton onPress={() => navigate("Cart")}/>
-            <Button onPress={() => navigate("Cart")} title="My Cart" />
+            <Button
+              onPress={() => navigate("Cart")}
+              title="My Cart"
+              color="#fff"
+            />
           ),
           headerTintColor: "white",
           headerStyle: { backgroundColor: "#ff5722" }

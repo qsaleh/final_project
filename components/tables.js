@@ -2,7 +2,7 @@ import React from "react";
 
 import { StyleSheet, View, Button, ScrollView } from "react-native";
 import { Table, Row, Rows } from "react-native-table-component";
-import { useGlobal } from '../lib/globals';
+import { useGlobal } from "../lib/globals";
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 50, backgroundColor: "#fff" },
   head: { height: 40, backgroundColor: "#f1f8ff" },
@@ -45,5 +45,5 @@ const Tables = () => {
       </ScrollView>
     </View>
   );
-}
+};
 export default Tables;

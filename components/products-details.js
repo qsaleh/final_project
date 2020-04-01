@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { route, navigation } from "@react-navigation/stack";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import axios from "axios";
 import { useGlobal } from "../lib/globals";

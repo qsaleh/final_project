@@ -1,9 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, key } from "react-native";
+import { StyleSheet, View } from "react-native";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import Tables from "../components/tables";
 import axios from "axios";
-import { navigation } from "@react-navigation/stack";
 import { useGlobal } from "../lib/globals";
 
 const Cart = ({ navigation: { navigate } }) => {
@@ -20,7 +19,7 @@ const Cart = ({ navigation: { navigate } }) => {
         console.log(error);
       });
   };
-  const total = cartItems.reduce(function (tot, product) {
+  const total = cartItems.reduce(function(tot, product) {
     return tot + product.subTotal;
   }, 0);
   return [

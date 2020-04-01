@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import ButtonWithBackground from "../components/ButtonWithBackground";
 import Card from "../components/card-info";
-import { navigation } from "@react-navigation/stack";
 import Stripe from "react-native-stripe-api";
+
 const Payment = ({ navigation: { navigate } }) => {
   const confirmPayment = () => {
     const apiKey = "pk_test_Jxd3WCtPiiGGGQORl0AxKkN500Ta61gIx2";

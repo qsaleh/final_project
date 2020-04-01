@@ -1,9 +1,9 @@
-import React, { Componet } from "react";
+import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 
 const CartButton = (props) => {
   const content = (
-    <View >
+    <View>
       style={styles.cart}
       source={require("../assets/shopping-cart-xxl.png")}
     </View>
@@ -13,10 +13,10 @@ const CartButton = (props) => {
 };
 
 const styles = StyleSheet.create({
-cart:{
-  width: 10,
-  height: 10
-}
+  cart: {
+    width: 10,
+    height: 10
+  }
 });
 
 export default CartButton;
